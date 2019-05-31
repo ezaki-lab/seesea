@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import './Card.css'
+import '../Base/Base.css'
 
 class Card extends Component {
     constructor(props) {
@@ -9,9 +10,9 @@ class Card extends Component {
 
     render() {
         return (
-            <div className='card'>
+            <div className='card base'>
+                <span className='base-title-small'>{this.props.card.title}</span>
                 <img className='symbol' src={this.props.card.symbol} />
-                <span className='title'>{this.props.card.title}</span>
                 <div className='data-content'>
                     <b className='data'>{this.props.card.data}</b>
                     <p
