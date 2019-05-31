@@ -1,0 +1,12 @@
+.camera {
+    width: 30%;
+    height: 40%;
+}
+
+.canvas {
+    width: 90%;
+    height: calc(90% - 40px);
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}

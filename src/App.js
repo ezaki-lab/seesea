@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css'
 
+import Camera from './components/Camera/Camera.js'
 import Card from './components/Card/Card.js'
 import Navbar from './components/Navbar/Navbar.js'
 
@@ -59,6 +60,7 @@ class App extends Component {
         <Card card={this.state.cards[0]}></Card>
         <Card card={this.state.cards[1]}></Card>
         <Card card={this.state.cards[2]}></Card>
+        <Camera></Camera>
       </div>
     )
   }
