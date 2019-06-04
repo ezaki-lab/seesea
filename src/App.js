@@ -3,6 +3,7 @@ import './App.css'
 
 import Camera from './components/Camera/Camera.js'
 import Card from './components/Card/Card.js'
+import OneDayScheduleGraph from './components/OneDayScheduleGraph/OneDayScheduleGraph.js'
 import Navbar from './components/Navbar/Navbar.js'
 
 import clock from './images/Card/clock.png'
@@ -60,7 +61,8 @@ class App extends Component {
         <Card card={this.state.cards[0]}></Card>
         <Card card={this.state.cards[1]}></Card>
         <Card card={this.state.cards[2]}></Card>
-        <Camera></Camera>
+        <Camera date={this.state.date}></Camera>
+        <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>
       </div>
     )
   }
