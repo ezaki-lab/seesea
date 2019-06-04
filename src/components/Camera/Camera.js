@@ -23,7 +23,7 @@ class Camera extends Component {
         return (
             <div className='camera base'>
                 <span className='base-title-large'>カメラ</span>
-                <img id="canvas" class="canvas" src={image_url}></img>
+                <img id="canvas" className="canvas" src={image_url}></img>
             </div>
         )
     }
