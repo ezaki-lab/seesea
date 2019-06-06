@@ -4,6 +4,7 @@ import './App.css'
 import Camera from './components/Camera/Camera.js'
 import Card from './components/Card/Card.js'
 import OneDayScheduleGraph from './components/OneDayScheduleGraph/OneDayScheduleGraph.js'
+import PickDate from './components/PickDate/PickDate.js'
 import Navbar from './components/Navbar/Navbar.js'
 
 import clock from './images/Card/clock.png'
@@ -58,6 +59,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar user={this.state.user}></Navbar>
+        <PickDate></PickDate>
         <Card card={this.state.cards[0]}></Card>
         <Card card={this.state.cards[1]}></Card>
         <Card card={this.state.cards[2]}></Card>

@@ -7,6 +7,7 @@
     "react": "^16.8.6",
     "react-chartjs": "^1.2.0",
     "react-chartjs-2": "^2.7.6",
+    "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
     "react-flex": "^2.2.8",
     "react-responsive-container": "0.0.0",
