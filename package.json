@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chart.js": "^2.8.0",
     "react": "^16.8.6",
+    "react-chartjs": "^1.2.0",
+    "react-chartjs-2": "^2.7.6",
+    "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-flex": "^2.2.8",
+    "react-grid-layout": "^0.16.6",
+    "react-responsive-container": "0.0.0",
+    "react-scripts": "3.0.1",
+    "react-sizeme": "^2.6.7",
+    "react-vis": "^1.11.7",
+    "recharts": "^1.6.2"
   },
   "scripts": {
     "start": "react-scripts start",
