@@ -54,7 +54,7 @@ class PickDate extends Component {
 
     render() {
         return (
-            <div className="pickdate">
+            <div className="seesea-pickdate">
                 <button className="prev base" onClick={this.clickedPrevDate}>
                     <div className='arrow left'></div>
                 </button>

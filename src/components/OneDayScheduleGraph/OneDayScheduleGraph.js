@@ -108,7 +108,7 @@ class OneDayScheduleGraph extends Component {
         let dataPoints = this.makeDataPointsFromSchedule(this.state.schedule)
 
         return (
-            <div className="graph base">
+            <div className="seesea-onedaygraph base">
                 <span className='base-title-large'>給餌スケジュール</span>
                 <ComposedChart width={400} height={300} data={dataPoints} margin={{ top: 60, right: 30, bottom: 10, left: 0 }}>
                     <defs>

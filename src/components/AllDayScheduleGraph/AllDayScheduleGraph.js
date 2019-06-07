@@ -35,7 +35,7 @@ class AllDayScheduleGraph extends Component {
         console.log(dataPoints)
 
         return (
-            <div className="allgraph base">
+            <div className="seesea-alldaygraph base">
                 <span className='base-title-large'>養殖スケジュール</span>
                 <ComposedChart width={700} height={250} data={dataPoints} margin={{ top: 60, right: 30, bottom: 10, left: 0 }}>
                     <defs>

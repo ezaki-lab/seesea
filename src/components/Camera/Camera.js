@@ -26,7 +26,7 @@ class Camera extends Component {
 
     render() {
         return (
-            <div className='camera base'>
+            <div className='seesea-camera base'>
                 <span className='base-title-large'>カメラ</span>
                 <img id="canvas" className="canvas" src={image_url}></img>
             </div>

@@ -10,7 +10,7 @@ class Card extends Component {
 
     render() {
         return (
-            <div className='card base'>
+            <div className='seesea-card base'>
                 <span className='base-title-small'>{this.props.card.title}</span>
                 <img className='symbol' src={this.props.card.symbol} />
                 <div className='data-content'>
