@@ -62,7 +62,7 @@ class OneDayScheduleGraph extends Component {
                     250,
                     200
                 ],
-                feeds: [
+                hourFeeds: [
                     0,
                     0,
                     0,
@@ -97,7 +97,7 @@ class OneDayScheduleGraph extends Component {
         var dataPoints = []
         for (var i in schedule.tides) {
             var point = {
-                month: i.toString(), tide: schedule.tides[i], feed: schedule.feeds[i]
+                month: i.toString(), tide: schedule.tides[i], hourFeed: schedule.hourFeeds[i]
             }
             dataPoints.push(point)
         }
@@ -112,15 +112,15 @@ class OneDayScheduleGraph extends Component {
                 <span className='base-title-large'>給餌スケジュール</span>
                 <ComposedChart width={400} height={300} data={dataPoints} margin={{ top: 60, right: 30, bottom: 10, left: 0 }}>
                     <defs>
-                        <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                        <linearGradient id="gradient-tide" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#F18DE9" stopOpacity={0.5} />
                             <stop offset="95%" stopColor="#CE2BC1" stopOpacity={0.0} />
                         </linearGradient>
                     </defs>
                     <CartesianGrid stroke="#8097B1" strokeOpacity={0.4} strokeWidth={0.5} strokeDasharray="3 5" />
-                    <Area type="monotone" dataKey="tide" stroke="#F18DE9" fillOpacity={1} fill="url(#gradient)" />
-                    <Bar dataKey='feed' barSize={10} fill="#3794FC" />
-                    <XAxis stroke="#E0E7FF" tick={{ fill: "#97A4BA" }} dataKey="month" />
+                    <Area dataKey="tide" type="monotone" stroke="#F18DE9" fillOpacity={1} fill="url(#gradient-tide)" />
+                    <Bar dataKey='hourFeed' barSize={10} fill="#3794FC" />
+                    <XAxis dataKey="month" stroke="#E0E7FF" tick={{ fill: "#97A4BA" }} />
                     <YAxis stroke="#E0E7FF" tick={{ fill: "#97A4BA" }} />
                     <Tooltip />
                     <Legend />
