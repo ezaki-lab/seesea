@@ -1,25 +1,25 @@
-.seesea-pickdate {
-    height: 40px;
-    width: 150px;
+#seesea-pickdate {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
 
-.seesea-pickdate .prev {
+#seesea-pickdate .prev {
     height: 100%;
     width: 20%;
     cursor: pointer;
     outline: none;
 }
 
-.seesea-pickdate .next {
+#seesea-pickdate .next {
     height: 100%;
     width: 20%;
     cursor: pointer;
     outline: none;
 }
 
-.seesea-pickdate .input {
+#seesea-pickdate .input {
     height: 100%;
     width: 100%;
     text-align: center;
@@ -29,11 +29,11 @@
     box-sizing: border-box;
 }
 
-.seesea-pickdate .input:focus {
+#seesea-pickdate .input:focus {
     outline: none;
 }
 
-.seesea-pickdate .arrow {
+#seesea-pickdate .arrow {
     position: absolute;
     display: block;
     width: 10px;
@@ -42,14 +42,14 @@
     border-right: solid 1px #97A4BA;
 }
 
-.seesea-pickdate .arrow.left {
+#seesea-pickdate .arrow.left {
     top: 15px;
     left: 9px;
     -webkit-transform: rotate(-135deg);
     transform: rotate(-135deg);
 }
 
-.seesea-pickdate .arrow.right {
+#seesea-pickdate .arrow.right {
     top: 15px;
     left: 2px;
     -webkit-transform: rotate(45deg);

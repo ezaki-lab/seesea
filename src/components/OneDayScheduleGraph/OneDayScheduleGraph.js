@@ -34,61 +34,15 @@ import './OneDayScheduleGraph.css'
 class OneDayScheduleGraph extends Component {
     constructor(props) {
         super(props);
+        this.getComponentSize = this.getComponentSize.bind(this);
         this.state = {
+            size: {
+                height: 0,
+                width: 0
+            },
             schedule: {
-                tides: [
-                    140,
-                    90,
-                    60,
-                    30,
-                    50,
-                    100,
-                    160,
-                    210,
-                    260,
-                    300,
-                    280,
-                    230,
-                    180,
-                    130,
-                    80,
-                    30,
-                    60,
-                    110,
-                    160,
-                    210,
-                    260,
-                    290,
-                    250,
-                    200
-                ],
-                hourFeeds: [
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    300,
-                    500,
-                    400,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    300,
-                    200,
-                    0,
-                    0,
-                    0,
-                    0
-                ]
+                tides: [140, 90, 60, 30, 50, 100, 160, 210, 260, 300, 280, 230, 180, 130, 80, 30, 60, 110, 160, 210, 260, 290, 250, 200],
+                hourFeeds: [0, 0, 0, 0, 0, 0, 300, 500, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 200, 0, 0, 0, 0]
             }
         }
     }
@@ -104,13 +58,36 @@ class OneDayScheduleGraph extends Component {
         return dataPoints
     }
 
+    getComponentSize() {
+        let height = document.getElementById('seesea-onedaygraph').clientHeight;
+        let width = document.getElementById('seesea-onedaygraph').clientWidth;
+        this.setState({
+            size: {
+                height: height,
+                width: width
+            }
+        });
+    }
+
+    componentDidMount() {
+        this.getComponentSize();
+    }
+
+    componentWillMount() {
+        window.addEventListener('resize', () => {
+            this.getComponentSize();
+        });
+    }
+
     render() {
-        let dataPoints = this.makeDataPointsFromSchedule(this.state.schedule)
+        let dataPoints = this.makeDataPointsFromSchedule(this.state.schedule);
+        let height = this.state.size.height;
+        let width = this.state.size.width;
 
         return (
-            <div className="seesea-onedaygraph base">
+            <div id='seesea-onedaygraph' className='base'>
                 <span className='base-title-large'>給餌スケジュール</span>
-                <ComposedChart width={400} height={300} data={dataPoints} margin={{ top: 60, right: 30, bottom: 10, left: 0 }}>
+                <ComposedChart width={width} height={height} data={dataPoints} margin={{ top: 60, right: 30, bottom: 10, left: 0 }}>
                     <defs>
                         <linearGradient id="gradient-tide" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#F18DE9" stopOpacity={0.5} />

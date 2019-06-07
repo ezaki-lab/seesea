@@ -1,18 +1,16 @@
-.seesea-card {
-    /* width: 240px;
-    height: 100px; */
+#seesea-card {
     width: 100%;
     height: 100%;
 }
 
-.seesea-card .symbol {
+#seesea-card .symbol {
     position: absolute;
     top: 10px;
     right: 10px;
     width: 40px;
 }
 
-.seesea-card .data-content {
+#seesea-card .data-content {
     position: relative;
     top: 22px;
     left: 15px;
@@ -21,12 +19,12 @@
     /* background: black; */
 }
 
-.seesea-card .data {
+#seesea-card .data {
     color: #67758D;
     font-size: 28px;
 }
 
-.seesea-card .data-addition {
+#seesea-card .data-addition {
     border-style: solid;
     border-width: 1px;
     border-radius: 4px;

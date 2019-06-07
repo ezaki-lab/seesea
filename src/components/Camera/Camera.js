@@ -3,11 +3,18 @@ import React, { Component } from 'react'
 import './Camera.css'
 import '../Base/Base.css'
 
-var image_url = ""
+var image_url = "";
 
 class Camera extends Component {
     constructor(props) {
         super(props);
+        this.getComponentSize = this.getComponentSize.bind(this);
+        this.state = {
+            size: {
+                height: 0,
+                width: 0
+            }
+        }
         image_url = this.props.url;
     }
 
@@ -20,15 +27,46 @@ class Camera extends Component {
         }, 5000);
     }
 
+    getComponentSize() {
+        let height = document.getElementById('seesea-camera').clientHeight;
+        let width = document.getElementById('seesea-camera').clientWidth;
+        this.setState({
+            size: {
+                height: height,
+                width: width
+            }
+        });
+    }
+
     componentDidMount() {
         this.streamRaftImage();
+        this.getComponentSize();
+    }
+
+    componentWillMount() {
+        window.addEventListener('resize', () => {
+            this.getComponentSize();
+        });
     }
 
     render() {
+        let height = this.state.size.height;
+        let width = this.state.size.width;
         return (
-            <div className='seesea-camera base'>
+            <div id="seesea-camera" className='base'>
                 <span className='base-title-large'>カメラ</span>
-                <img id="canvas" className="canvas" src={image_url}></img>
+                <img
+                    id="canvas"
+                    src={image_url}
+                    style={{
+                        marginTop: 60,
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        height: height - 70,
+                        width: width - 30,
+                        backgroundColor: "gray"
+                    }}
+                ></img>
             </div>
         )
     }

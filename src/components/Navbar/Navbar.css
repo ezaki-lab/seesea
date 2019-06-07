@@ -1,4 +1,4 @@
-.seesea-navbar {
+#seesea-navbar {
     width: 100%;
     height: 50px;
     background-color: #4E96E4;
@@ -7,27 +7,27 @@
     justify-content: space-between;
 }
 
-.seesea-navbar .logo {
+#seesea-navbar .logo {
     height: 60%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 20px;
 }
 
-.seesea-navbar .profile {
+#seesea-navbar .profile {
     display: flex;
     flex-direction: row;
     text-decoration: none;
     margin-right: 20px;
 }
 
-.seesea-navbar .arrow {
+#seesea-navbar .arrow {
     margin-top: 14px;
     margin-right: 8px;
     margin-left: 8px;
 }
 
-.seesea-navbar .arrow-icon {
+#seesea-navbar .arrow-icon {
     position: relative;
     display: inline-block;
     padding-left: 20px;
@@ -36,7 +36,7 @@
 }
 
 
-.seesea-navbar .arrow-icon::before {
+#seesea-navbar .arrow-icon::before {
     content: '';
     width: 8px;
     height: 8px;
@@ -52,12 +52,12 @@
     margin-top: -5px;
 }
 
-.seesea-navbar .username {
+#seesea-navbar .username {
     margin: auto 8px;
     color: white;
 }
 
-.seesea-navbar .usericon {
+#seesea-navbar .usericon {
     height: 30px;
     width: 30px;
     margin: auto 8px;

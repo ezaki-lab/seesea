@@ -13,6 +13,7 @@
     "react-grid-layout": "^0.16.6",
     "react-responsive-container": "0.0.0",
     "react-scripts": "3.0.1",
+    "react-sizeme": "^2.6.7",
     "react-vis": "^1.11.7",
     "recharts": "^1.6.2"
   },

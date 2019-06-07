@@ -86,20 +86,20 @@ class App extends Component {
 
   render() {
     var layout = [
-      { i: 'pickdate', x: 0, y: 0, w: 2, h: 1, static: true },
-      { i: 'card-date', x: 0, y: 1, w: 3, h: 2, static: true },
+      { i: 'pickdate',      x: 0, y: 0, w: 1.7, h: 1, static: true },
+      { i: 'card-date',     x: 0, y: 1, w: 3, h: 2, static: true },
       { i: 'card-fishsize', x: 3, y: 1, w: 3, h: 2, static: true },
-      { i: 'card-water', x: 6, y: 1, w: 3, h: 2, static: true },
-      { i: 'camera', x: 0, y: 3, w: 4, h: 5, static: true },
-      { i: 'onedaygraph', x: 4, y: 3, w: 4, h: 5, static: true },
-      { i: 'alldaygraph', x: 0, y: 8, w: 8, h: 4, static: true },
+      { i: 'card-water',    x: 6, y: 1, w: 3, h: 2, static: true },
+      { i: 'camera',        x: 0, y: 3, w: 4, h: 5, static: true },
+      { i: 'onedaygraph',   x: 4, y: 3, w: 4, h: 5, static: true },
+      { i: 'alldaygraph',   x: 0, y: 8, w: 8, h: 4, static: true },
     ];
     let wsize = this.state.windowSize;
     return (
       <div className="App">
-        <Navbar user={this.state.user}></Navbar>
-        <GridLayout layout={layout} cols={12} margin={[20, 20]} rowHeight={45} width={wsize.width}>
-          <div key="pickdate">
+        <Navbar user={this.state.user} style={{zIndex:1000}}></Navbar>
+        <GridLayout layout={layout} cols={12} margin={[20, 15]} rowHeight={40} width={wsize.width}>
+          <div key="pickdate" style={{zIndex:100}}>
             <PickDate onDayChange={this.handleDateChange} ></PickDate>
           </div>
           <div key="card-date">
