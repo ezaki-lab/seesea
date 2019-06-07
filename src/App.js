@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css'
 
+import AllDayScheduleGraph from './components/AllDayScheduleGraph/AllDayScheduleGraph.js'
 import Camera from './components/Camera/Camera.js'
 import Card from './components/Card/Card.js'
 import OneDayScheduleGraph from './components/OneDayScheduleGraph/OneDayScheduleGraph.js'
@@ -71,6 +72,7 @@ class App extends Component {
         <Card card={this.state.cards[2]}></Card>
         <Camera date={this.state.date}></Camera>
         <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>
+        <AllDayScheduleGraph date={this.state.date}></AllDayScheduleGraph>
       </div>
     )
   }
