@@ -15,7 +15,9 @@ import waterdrop from './images/Card/waterdrop.png'
 class App extends Component {
   constructor() {
     super();
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.state = {
+      date: new Date(),
       user: {
         name: "山田太郎",
         icon: usericon
@@ -55,11 +57,15 @@ class App extends Component {
     }
   }
 
+  handleDateChange(date) {
+    this.setState({ date: date });
+  }
+
   render() {
     return (
       <div className="App">
         <Navbar user={this.state.user}></Navbar>
-        <PickDate></PickDate>
+        <PickDate onDayChange={this.handleDateChange} ></PickDate>
         <Card card={this.state.cards[0]}></Card>
         <Card card={this.state.cards[1]}></Card>
         <Card card={this.state.cards[2]}></Card>

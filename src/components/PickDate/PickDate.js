@@ -18,33 +18,38 @@ class PickDate extends Component {
 
     componentWillMount() {
         var today = new Date();
-        this.setState({
-            selectedDate: today
-        });
+        this.setState({ selectedDate: today });
+    }
+
+    delegateDateChanged(date) {
+        this.props.onDayChange(date);
     }
 
     handleDateChange(date) {
         this.setState({ selectedDate: date });
+        this.delegateDateChanged(date);
     }
 
     clickedPrevDate() {
         let selectedDate = this.state.selectedDate;
         let prevDate = new Date(
-            selectedDate.getFullYear(), 
-            selectedDate.getMonth(), 
+            selectedDate.getFullYear(),
+            selectedDate.getMonth(),
             selectedDate.getDate() - 1
-            );
-        this.setState({ selectedDate: prevDate })
+        );
+        this.setState({ selectedDate: prevDate });
+        this.delegateDateChanged(prevDate);
     }
 
     clickedNextDate() {
         let selectedDate = this.state.selectedDate;
         let nextDate = new Date(
-            selectedDate.getFullYear(), 
-            selectedDate.getMonth(), 
+            selectedDate.getFullYear(),
+            selectedDate.getMonth(),
             selectedDate.getDate() + 1
-            );
-        this.setState({ selectedDate: nextDate })
+        );
+        this.setState({ selectedDate: nextDate });
+        this.delegateDateChanged(nextDate);
     }
 
     render() {
