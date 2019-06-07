@@ -7,7 +7,12 @@ import './AllDayScheduleGraph.css'
 class AllDayScheduleGraph extends Component {
     constructor(props) {
         super(props);
+        this.getComponentSize = this.getComponentSize.bind(this);
         this.state = {
+            size: {
+                height: 0,
+                width: 0
+            },
             schedule: {
                 waterTemperature: [14, 9, 6, 3, 5, 10, 16, 21, 26, 30, 28, 23, 18, 13, 8, 3, 6, 11, 16, 21, 26, 29, 25, 20],
                 fishSize: [0, 50, 110, 160, 210, 300, 340, 380, 420, 460, 500, 550, 660, 720, 780, 830, 940, 990, 1040, 1100, 1200, 1250, 1300],
@@ -30,14 +35,36 @@ class AllDayScheduleGraph extends Component {
         return dataPoints
     }
 
+    getComponentSize() {
+        let height = document.getElementById('seesea-alldaygraph').clientHeight;
+        let width = document.getElementById('seesea-alldaygraph').clientWidth;
+        this.setState({
+            size: {
+                height: height,
+                width: width
+            }
+        });
+    }
+
+    componentDidMount() {
+        this.getComponentSize();
+    }
+
+    componentWillMount() {
+        window.addEventListener('resize', () => {
+            this.getComponentSize();
+        });
+    }
+
     render() {
-        let dataPoints = this.makeDataPointsFromSchedule(this.state.schedule)
-        console.log(dataPoints)
+        let dataPoints = this.makeDataPointsFromSchedule(this.state.schedule);
+        let height = this.state.size.height;
+        let width = this.state.size.width;
 
         return (
-            <div className="allgraph base">
+            <div id="seesea-alldaygraph" className="base">
                 <span className='base-title-large'>養殖スケジュール</span>
-                <ComposedChart width={700} height={250} data={dataPoints} margin={{ top: 60, right: 30, bottom: 10, left: 0 }}>
+                <ComposedChart width={width} height={height} data={dataPoints} margin={{ top: 60, right: 20, bottom: 10, left: 10 }}>
                     <defs>
                         <linearGradient id="gradient-water" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#3A96FD" stopOpacity={0.2} />

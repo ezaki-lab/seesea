@@ -12,7 +12,7 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div className='navbar'>
+            <div id='seesea-navbar'>
                 <img className='logo' src={logo} />
                 <a className='profile' href="https://www.google.com/">
                     <div className='arrow'>

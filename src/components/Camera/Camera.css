@@ -1,11 +1,4 @@
-.camera {
-    height: 300px;
-    width: 400px;
-}
-
-.camera .canvas {
-    position: absolute;
-    top: 60px;
-    left: calc(3% + 35px);
-    height: calc(100% - 70px);
+#seesea-camera {
+    height: 100%;
+    width: 100%;
 }
