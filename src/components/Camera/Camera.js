@@ -3,11 +3,16 @@ import React, { Component } from 'react'
 import './Camera.css'
 import '../Base/Base.css'
 
-const image_url = "http://uoccya.ise-hp.com/cages/lastimg/5018";
+var image_url = ""
 
 class Camera extends Component {
+    constructor(props) {
+        super(props);
+        image_url = this.props.url;
+    }
 
     streamRaftImage() {
+        console.log(this.props.url);
         setInterval(function () {
             var myImageElement = document.getElementById('canvas');
             var newImage = image_url + '?' + new Date();

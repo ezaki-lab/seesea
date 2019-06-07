@@ -59,7 +59,7 @@ class PickDate extends Component {
                     <div className='arrow left'></div>
                 </button>
                 <DayPickerInput
-                    inputProps={{ className: "inputdate base" }}
+                    inputProps={{ className: "input base" }}
                     value={this.state.selectedDate}
                     onDayChange={this.handleDateChange}
                 />

@@ -3,7 +3,7 @@
     width: 400px;
 }
 
-.canvas {
+.camera .canvas {
     position: absolute;
     top: 60px;
     left: calc(3% + 35px);

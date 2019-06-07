@@ -7,27 +7,27 @@
     justify-content: space-between;
 }
 
-.logo {
+.navbar .logo {
     height: 60%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 20px;
 }
 
-.profile {
+.navbar .profile {
     display: flex;
     flex-direction: row;
     text-decoration: none;
     margin-right: 20px;
 }
 
-.arrow {
-    margin-top: 12px;
+.navbar .arrow {
+    margin-top: 14px;
     margin-right: 8px;
     margin-left: 8px;
 }
 
-.arrow-icon {
+.navbar .arrow-icon {
     position: relative;
     display: inline-block;
     padding-left: 20px;
@@ -35,7 +35,8 @@
     padding-top: -30px;
 }
 
-.arrow-icon::before {
+
+.navbar .arrow-icon::before {
     content: '';
     width: 8px;
     height: 8px;
@@ -51,12 +52,12 @@
     margin-top: -5px;
 }
 
-.username {
+.navbar .username {
     margin: auto 8px;
     color: white;
 }
 
-.usericon {
+.navbar .usericon {
     height: 30px;
     width: 30px;
     margin: auto 8px;
