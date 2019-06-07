@@ -69,7 +69,7 @@ class App extends Component {
         <Card card={this.state.cards[0]}></Card>
         <Card card={this.state.cards[1]}></Card>
         <Card card={this.state.cards[2]}></Card>
-        <Camera date={this.state.date}></Camera>
+        <Camera date={this.state.date} url="http://uoccya.ise-hp.com/cages/lastimg/5018"></Camera>
         <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>
       </div>
     )
