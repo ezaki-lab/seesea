@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import GridLayout from 'react-grid-layout';
+import {
+  isBrowser,
+  isMobile,
+  isTablet,
+} from "react-device-detect";
 import './App.css'
 
 import AllDayScheduleGraph from './components/AllDayScheduleGraph/AllDayScheduleGraph.js'
@@ -85,20 +90,43 @@ class App extends Component {
   }
 
   render() {
-    var layout = [
-      { i: 'pickdate',      x: 0, y: 0, w: 1.7, h: 1, static: true },
-      { i: 'card-date',     x: 0, y: 1, w: 3, h: 2, static: true },
-      { i: 'card-fishsize', x: 3, y: 1, w: 3, h: 2, static: true },
-      { i: 'card-water',    x: 6, y: 1, w: 3, h: 2, static: true },
-      { i: 'camera',        x: 0, y: 3, w: 4, h: 5, static: true },
-      { i: 'onedaygraph',   x: 4, y: 3, w: 4, h: 5, static: true },
-      { i: 'alldaygraph',   x: 0, y: 8, w: 8, h: 4, static: true },
-    ];
+    var layout = [];
+    var margin = [0, 0];
+    var cols = 0;
+    var rowHeight = 0;
     let wsize = this.state.windowSize;
+    if (isMobile) {
+      margin = [10, 10];
+      cols = 2;
+      rowHeight = 40;
+      layout = [
+        { i: 'pickdate',      x: 0, y: 0, w: 1, h: 1, static: true },
+        { i: 'card-date',     x: 0, y: 1, w: 1, h: 2, static: true },
+        { i: 'card-fishsize', x: 1, y: 1, w: 1, h: 2, static: true },
+        { i: 'card-water',    x: 0, y: 3, w: 1, h: 2, static: true },
+        { i: 'camera',        x: 0, y: 5, w: 2, h: 5, static: true },
+        { i: 'onedaygraph',   x: 0, y: 10, w: 2, h: 5, static: true },
+        { i: 'alldaygraph',   x: 0, y: 15, w: 2, h: 5, static: true },
+      ];
+    }
+    if (isTablet || isBrowser) {
+      margin = [20, 15];
+      cols = 12;
+      rowHeight = 40;
+      layout = [
+        { i: 'pickdate',      x: 0, y: 0, w: 1.7, h: 1, static: true },
+        { i: 'card-date',     x: 0, y: 1, w: 3, h: 2, static: true },
+        { i: 'card-fishsize', x: 3, y: 1, w: 3, h: 2, static: true },
+        { i: 'card-water',    x: 6, y: 1, w: 3, h: 2, static: true },
+        { i: 'camera',        x: 0, y: 3, w: 4, h: 5, static: true },
+        { i: 'onedaygraph',   x: 4, y: 3, w: 4, h: 5, static: true },
+        { i: 'alldaygraph',   x: 0, y: 8, w: 8, h: 4, static: true },
+      ];
+    }
     return (
       <div className="App">
         <Navbar user={this.state.user} style={{zIndex:1000}}></Navbar>
-        <GridLayout layout={layout} cols={12} margin={[20, 15]} rowHeight={40} width={wsize.width}>
+        <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
           <div key="pickdate" style={{zIndex:100}}>
             <PickDate onDayChange={this.handleDateChange} ></PickDate>
           </div>
