@@ -61,8 +61,7 @@ class PickDate extends Component {
                 <DayPickerInput
                     inputProps={{ 
                         className: "input base",
-                        readOnly: true,
-                        // style:{fontSize:16}
+                        readOnly: true
                     }}
                     value={this.state.selectedDate}
                     onDayChange={this.handleDateChange}
