@@ -55,6 +55,28 @@ class Camera extends Component {
         return (
             <div id="seesea-camera" className='base'>
                 <span className='base-title-large'>カメラ</span>
+                {/* <div
+                    className="canvas-container"
+                    style={{
+                        marginTop: 60,
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        height: height - 70,
+                        width: width - 30,
+                        backgroundColor: "gray",
+                        display: 'flex', justifyContent: 'center',
+                        backgroundImage: `url(${image_url})`,
+                        filter: 'blur(8px)',
+                    }}
+                >
+                    <img
+                        id="canvas"
+                        src={image_url}
+                        style={{
+                            height: "100%",
+                        }}
+                    ></img>
+                </div> */}
                 <img
                     id="canvas"
                     src={image_url}
@@ -64,7 +86,7 @@ class Camera extends Component {
                         marginRight: "auto",
                         height: height - 70,
                         width: width - 30,
-                        backgroundColor: "gray"
+                        backgroundColor: "#F6F9FC"
                     }}
                 ></img>
             </div>
