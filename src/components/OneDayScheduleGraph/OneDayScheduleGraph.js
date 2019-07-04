@@ -34,7 +34,7 @@ import './OneDayScheduleGraph.css'
 //     { month: "23", tide: 200, feed: 0},
 // ]
 
-const RequestStateTypes = {
+const RequestStateType = {
     success: 'success',
     failed: 'failed',
     loading: 'loading',
@@ -50,7 +50,7 @@ class OneDayScheduleGraph extends Component {
                 height: 0,
                 width: 0
             },
-            requestStatus: RequestStateTypes.none,
+            requestStatus: RequestStateType.none,
             schedule: {
                 tides: [],
                 hourFeeds: [0, 0, 0, 0, 0, 0, 300, 500, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 200, 0, 0, 0, 0]
@@ -71,10 +71,10 @@ class OneDayScheduleGraph extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         // For re-render component
-        if (nextState.requestStatus === RequestStateTypes.success) {
+        if (nextState.requestStatus === RequestStateType.success) {
             return true;
         }
-        if (nextState.requestStatus === RequestStateTypes.loading) {
+        if (nextState.requestStatus === RequestStateType.loading) {
             return true;
         }
         // For get tides of selected date
@@ -86,19 +86,13 @@ class OneDayScheduleGraph extends Component {
 
     componentDidUpdate() {
         // For get tides of selected date
-        if (this.state.requestStatus === RequestStateTypes.none) {
-            this.setState({
-                schedule: {
-                    tides: [],
-                    hourFeeds: this.state.schedule.hourFeeds
-                }
-            })
+        if (this.state.requestStatus === RequestStateType.none) {
             this.getTides(this.props.date);
         }
         // For re-render component
-        else if (this.state.requestStatus !== RequestStateTypes.loading) {
+        else if (this.state.requestStatus !== RequestStateType.loading) {
             this.setState({
-                requestStatus: RequestStateTypes.none
+                requestStatus: RequestStateType.none
             });
         }
     }
@@ -136,7 +130,7 @@ class OneDayScheduleGraph extends Component {
     getTides(date) {
         console.log("request get tides from https://tide-api-ezaki-lab.herokuapp.com/")
         this.setState({
-            requestStatus: RequestStateTypes.loading
+            requestStatus: RequestStateType.loading
         });
 
         var url_calculate = "https://tide-api-ezaki-lab.herokuapp.com/calculate"
@@ -167,7 +161,7 @@ class OneDayScheduleGraph extends Component {
                     tides: tides_calculate,
                     hourFeeds: this.state.schedule.hourFeeds
                 },
-                requestStatus: RequestStateTypes.success
+                requestStatus: RequestStateType.success
             });
         });
     }
@@ -178,7 +172,7 @@ class OneDayScheduleGraph extends Component {
         let width = this.state.size.width;
 
         var isLoadingActive = false;
-        if (this.state.requestStatus === RequestStateTypes.loading) {
+        if (this.state.requestStatus === RequestStateType.loading) {
             isLoadingActive = true;
         }
         console.log(isLoadingActive);

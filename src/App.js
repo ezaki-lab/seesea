@@ -146,7 +146,7 @@ class App extends Component {
             <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>
           </div>
           <div key="alldaygraph">
-            <AllDayScheduleGraph date={this.state.date}></AllDayScheduleGraph>
+            <AllDayScheduleGraph></AllDayScheduleGraph>
           </div>
         </GridLayout>
       </div>
