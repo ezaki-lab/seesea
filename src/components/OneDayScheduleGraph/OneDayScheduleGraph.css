@@ -4,7 +4,7 @@
 }
 
 #seesea-onedaygraph .chart {
-    margin-top: 30px;
-    height: calc(100% - 30px);
+    margin-top: 20px;
+    height: calc(100% - 15px);
     widows: 100%;
 }

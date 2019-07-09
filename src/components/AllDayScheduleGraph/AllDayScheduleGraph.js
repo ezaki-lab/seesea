@@ -106,6 +106,7 @@ class AllDayScheduleGraph extends Component {
         });
 
         let url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/allday"
+        // let url = "http://localhost:8080/feeds/allday"
         var dayFeeds = [];
         var fishSizes = [];
         var dates = [];
@@ -115,7 +116,7 @@ class AllDayScheduleGraph extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            if (response.status === 201) {
+            if (response.status === 200) {
                 return response.json();
             }
         }).then(json => {

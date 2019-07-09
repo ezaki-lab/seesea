@@ -25,112 +25,14 @@ class OneDayScheduleGraph extends Component {
             },
             requestStatus: RequestStateType.none,
             schedule: {
-                hourFeeds: [0, 0, 0, 0, 0, 0, 300, 500, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 200, 0, 0, 0, 0]
+                hourFeeds: []
             },
-            series: [
-                {
-                    name: '0',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '1',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '2',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '3',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '4',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '5',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '6',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '7',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '8',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '9',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '10',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '11',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '12',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '13',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '14',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '15',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '16',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '17',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '18',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '19',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '20',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '21',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '22',
-                    data: [...Array(60).keys()]
-                },
-                {
-                    name: '23',
-                    data: [...Array(60).keys()]
-                }
-            ],
         };
     }
 
     componentDidMount() {
         this.getComponentSize();
-        // this.getTides(this.props.date);
+        this.getFeedSchedule(this.props.date);
     }
 
     componentWillMount() {
@@ -158,7 +60,7 @@ class OneDayScheduleGraph extends Component {
     componentDidUpdate() {
         // For get tides of selected date
         if (this.state.requestStatus === RequestStateType.none) {
-            // this.getTides(this.props.date);
+            this.getFeedSchedule(this.props.date);
         }
         // For re-render component
         else if (this.state.requestStatus !== RequestStateType.loading) {
@@ -171,7 +73,6 @@ class OneDayScheduleGraph extends Component {
     getComponentSize() {
         let height = document.getElementById('seesea-onedaygraph').clientHeight;
         let width = document.getElementById('seesea-onedaygraph').clientWidth;
-        console.log("kita", width, height);
         this.setState({
             size: {
                 height: height,
@@ -180,8 +81,64 @@ class OneDayScheduleGraph extends Component {
         });
     }
 
+    dateToString(current_datetime) {
+        let year = current_datetime.getFullYear();
+        let month = (current_datetime.getMonth() + 1);
+        let day = current_datetime.getDate();
+        return year + "-" + month + "-" + day + " 00:00:00"
+    }
+
+    getFeedSchedule(date) {
+        console.log("request get feed schedule from https://feed-api-ezaki-lab.herokuapp.com/feeds/oneday")
+        this.setState({
+            requestStatus: RequestStateType.loading
+        });
+
+        var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/oneday"
+        // var url = "http://localhost:8080/feeds/oneday"
+        var schedule = [];
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({ 'date': this.dateToString(date) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.status === 201) {
+                return response.json();
+            }
+        }).then(json => {
+            if (json != null) {
+                console.log("success to get feed schedule");
+                schedule = json['schedule'];
+            }
+            else {
+                console.error("failed to get feed schedule")
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        }).finally(() => {
+            this.setState({
+                schedule: schedule,
+                requestStatus: RequestStateType.success
+            });
+        });
+    }
+
+    makeSeriesFromSchedule(schedule) {
+        var series = [];
+        for (var i in schedule) {
+            var point = {
+                name: i.toString(),
+                data: schedule[i],
+            }
+            series.push(point);
+        }
+        return series;
+    }
+
     render() {
-        // let dataPoints = this.makeDataPointsFromSchedule(this.state.schedule);
+        let series = this.makeSeriesFromSchedule(this.state.schedule);
         let height = this.state.size.height;
         let width = this.state.size.width;
 
@@ -190,43 +147,158 @@ class OneDayScheduleGraph extends Component {
             isLoadingActive = true;
         }
 
-        var options = {
-            chart: {
-                toolbar: {
-                    show: false
-                },
-                animations: {
-                    enabled: false
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            colors: ["#008FFB"],
-            xaxis: {
-                type: 'numeric',
-                tickAmount: 6,
-                labels: {
-                    formatter: function (value) {
-                        return Math.round(value - 1);
-                    }
-                }
-            }
-        };
-
         return (
             <div id='seesea-onedaygraph' className='base'>
-                <span className='base-title-large'>給餌スケジュール</span>
-                <div className='chart'>
-                    <ReactApexChart options={options} series={this.state.series} width="100%" height="100%" type={'heatmap'} />
-                </div>
-                {/* <LoadingOverlay style={{ width: width, height: height }}>
-                    
+                <LoadingOverlay style={{ width: width, height: height }}>
+                    <span className='base-title-large'>給餌スケジュール</span>
+                    <div className='chart'>
+                        <ReactApexChart options={options} series={series} width="100%" height="100%" type={'heatmap'} />
+                    </div>
                     <Loader loading={isLoadingActive} />
-                </LoadingOverlay> */}
+                </LoadingOverlay>
             </div>
         )
     }
 }
 
 export default OneDayScheduleGraph;
+
+
+
+let options = {
+    chart: {
+        toolbar: {
+            show: false
+        },
+        animations: {
+            enabled: false,
+        },
+    },
+    legend: {
+        show: false,
+    },
+    plotOptions: {
+        heatmap: {
+            shadeIntensity: 0.0,
+            colorScale: {
+                ranges: [
+                    {
+                        from: -1,
+                        to: 0,
+                        color: '#EAF0F7'
+                    },
+                    {
+                        from: 1,
+                        to: 1,
+                        color: '#01C5E9'
+                    },
+                    {
+                        from: 2,
+                        to: 2,
+                        color: '#0189E9'
+                    },
+                    {
+                        from: 3,
+                        to: 3,
+                        color: '#37D01F'
+                    },
+                    {
+                        from: 4,
+                        to: 4,
+                        color: '#FDCD01'
+                    },
+                    {
+                        from: 5,
+                        to: 5,
+                        color: '#FE7C03'
+                    },
+                    {
+                        from: 6,
+                        to: 6,
+                        color: '#FF83B7'
+                    },
+                    {
+                        from: 7,
+                        to: 7,
+                        color: '#FF284A'
+                    },
+                    {
+                        from: 8,
+                        to: 8,
+                        color: '#B322FF'
+                    }
+                ]
+            }
+        }
+    },
+    dataLabels: {
+        enabled: false,
+    },
+    xaxis: {
+        type: 'numeric',
+        tickAmount: 6,
+        min: 0,
+        max: 59.5,
+        axisTicks: {
+            show: true,
+            color: '#CDD3E8'
+        },
+        axisBorder: {
+            show: true,
+            color: '#CDD3E8'
+        },
+        labels: {
+            style: {
+                colors: "#97A4BA",
+                fontSize: '12px',
+            },
+        },
+    },
+    yaxis: [
+        {
+            show: true,
+            axisTicks: {
+                show: true,
+            },
+            axisBorder: {
+                show: true,
+                color: '#CDD3E8'
+            },
+            labels: {
+                style: {
+                    color: '#97A4BA',
+                    fontSize: '12px',
+                },
+                formatter: function (value, opt) {
+                    if (Number.isInteger(opt) === false && opt === undefined) {
+                        // tooltip y label
+                        return parseInt(23 - value).toString();
+                    }
+                    if (Number.isInteger(opt) === false && opt !== undefined) {
+                        // tooltip box label
+                        return parseInt(opt.series[opt.seriesIndex][opt.dataPointIndex]).toString();
+                    }
+                    let newValue = parseInt(value);
+                    if (Number.isNaN(newValue) === true) {
+                        return "";
+                    }
+                    if (newValue % 6 === 0 || newValue === 23) {
+                        // yaxis label
+                        return newValue.toString();
+                    }
+                    return "";
+                },
+            },
+            tooltip: {
+                enabled: true,
+            },
+            min: 0,
+            max: 23,
+            tickAmount: 4,
+            reversed: true,
+        },
+    ],
+    tooltip: {
+        theme: "dark",
+    }
+};
