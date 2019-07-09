@@ -40,6 +40,14 @@
     }
 }
 
+#seesea-pickdate .arrow-centering {
+    position: absolute;
+    top: 0;
+    right: calc(50% - 10px);
+    bottom: 0;
+    left: calc(50% - 10px);
+}
+
 #seesea-pickdate .arrow {
     position: absolute;
     display: block;
@@ -50,15 +58,15 @@
 }
 
 #seesea-pickdate .arrow.left {
-    top: 15px;
-    left: 9px;
+    top: 14px;
+    left: 8px;
     -webkit-transform: rotate(-135deg);
     transform: rotate(-135deg);
 }
 
 #seesea-pickdate .arrow.right {
-    top: 15px;
-    left: 2px;
+    top: 14px;
+    left: 1px;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
