@@ -81,10 +81,10 @@ class Camera extends Component {
                     id="canvas"
                     src={image_url}
                     style={{
-                        marginTop: 60,
+                        marginTop: 50,
                         marginLeft: "auto",
                         marginRight: "auto",
-                        height: height - 70,
+                        height: height - 60,
                         width: width - 30,
                         backgroundColor: "#F6F9FC"
                     }}

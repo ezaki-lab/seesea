@@ -13,6 +13,7 @@ import Card from './components/Card/Card.js'
 import OneDayScheduleGraph from './components/OneDayScheduleGraph/OneDayScheduleGraph.js'
 import PickDate from './components/PickDate/PickDate.js'
 import Navbar from './components/Navbar/Navbar.js'
+import TideChart from './components/TideChart/TideChart.js'
 
 import clock from './images/Card/clock.png'
 import fish from './images/Card/fish.png'
@@ -121,6 +122,7 @@ class App extends Component {
         { i: 'camera',        x: 0, y: 3, w: 4, h: 5, static: true },
         { i: 'onedaygraph',   x: 4, y: 3, w: 4, h: 5, static: true },
         { i: 'alldaygraph',   x: 0, y: 8, w: 8, h: 4, static: true },
+        { i: 'tidechart',     x: 0, y: 12, w: 4, h: 5, static: true },
       ];
     }
     return (
@@ -146,7 +148,10 @@ class App extends Component {
             <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>
           </div>
           <div key="alldaygraph">
-            <AllDayScheduleGraph date={this.state.date}></AllDayScheduleGraph>
+            <AllDayScheduleGraph></AllDayScheduleGraph>
+          </div>
+          <div key="tidechart">
+            <TideChart date={this.state.date}></TideChart>
           </div>
         </GridLayout>
       </div>
