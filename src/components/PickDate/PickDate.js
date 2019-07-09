@@ -56,10 +56,12 @@ class PickDate extends Component {
         return (
             <div id="seesea-pickdate">
                 <button className="prev base" onClick={this.clickedPrevDate}>
-                    <div className='arrow left'></div>
+                    <div className='arrow-centering'>
+                        <div className='arrow left'></div>
+                    </div>
                 </button>
                 <DayPickerInput
-                    inputProps={{ 
+                    inputProps={{
                         className: "input base",
                         readOnly: true
                     }}
@@ -67,7 +69,9 @@ class PickDate extends Component {
                     onDayChange={this.handleDateChange}
                 />
                 <button className="next base" onClick={this.clickedNextDate}>
-                    <div className='arrow right'></div>
+                    <div className='arrow-centering'>
+                        <div className='arrow right'></div>
+                    </div>
                 </button>
             </div>
         )
