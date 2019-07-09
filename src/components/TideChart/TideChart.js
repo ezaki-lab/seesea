@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ComposedChart, Legend, Bar, LabelList, AreaChart, Area, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { ComposedChart, Legend, Area, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 import { LoadingOverlay, Loader } from 'react-overlay-loader';
 
@@ -142,7 +142,6 @@ class TideChart extends Component {
         if (this.state.requestStatus === RequestStateType.loading) {
             isLoadingActive = true;
         }
-        console.log(isLoadingActive);
 
         return (
             <div id='seesea-tidechart' className='base'>
