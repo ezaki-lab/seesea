@@ -108,6 +108,7 @@ class App extends Component {
         { i: 'camera',        x: 0, y: 5, w: 2, h: 5, static: true },
         { i: 'onedaygraph',   x: 0, y: 10, w: 2, h: 5, static: true },
         { i: 'alldaygraph',   x: 0, y: 15, w: 2, h: 5, static: true },
+        { i: 'tidechart',     x: 0, y: 20, w: 2, h: 5, static: true },
       ];
     }
     if (isTablet || isBrowser) {

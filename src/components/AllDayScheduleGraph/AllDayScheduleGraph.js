@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ComposedChart, Legend, Bar, LabelList, AreaChart, Area, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { ComposedChart, Legend, Bar, Area, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 import { LoadingOverlay, Loader } from 'react-overlay-loader';
 
@@ -157,7 +157,6 @@ class AllDayScheduleGraph extends Component {
         if (this.state.requestStatus === RequestStateType.loading) {
             isLoadingActive = true;
         }
-        console.log(isLoadingActive);
 
         return (
             <div id="seesea-alldaygraph" className="base">
