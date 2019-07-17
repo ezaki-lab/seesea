@@ -74,6 +74,7 @@
     width: 150px;
     top: 65px;
     right: 20px;
+    z-index: 10000;
 }
 
 #seesea-navbar .menu:before {
