@@ -40,9 +40,11 @@ class AllDayScheduleGraph extends Component {
     }
 
     componentWillMount() {
-        window.addEventListener('resize', () => {
-            this.getComponentSize();
-        });
+        window.addEventListener('resize', this.getComponentSize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.getComponentSize);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
