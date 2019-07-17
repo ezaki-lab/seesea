@@ -19,10 +19,14 @@
     flex-direction: row;
     text-decoration: none;
     margin-right: 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 #seesea-navbar .arrow {
-    margin-top: 14px;
+    margin-top: 8px;
     margin-right: 8px;
     margin-left: 8px;
 }
@@ -34,7 +38,6 @@
     transform: rotate(90deg);
     padding-top: -30px;
 }
-
 
 #seesea-navbar .arrow-icon::before {
     content: '';
@@ -55,6 +58,7 @@
 #seesea-navbar .username {
     margin: auto 8px;
     color: white;
+    font-size: 17px;
 }
 
 #seesea-navbar .usericon {
@@ -62,4 +66,54 @@
     width: 30px;
     margin: auto 8px;
     border-radius: 15px;
+}
+
+#seesea-navbar .menu {
+    position: absolute;
+    height: 80px;
+    width: 150px;
+    top: 65px;
+    right: 20px;
+}
+
+#seesea-navbar .menu:before {
+    content: "";
+    position: absolute;
+    top: -26px;
+    left: 80%;
+    margin-left: -15px;
+    border: 12px solid transparent;
+    border-bottom: 14px solid white;
+    z-index: 2;
+}
+
+#seesea-navbar .menu:after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 80%;
+    margin-left: -17px;
+    border: 14px solid transparent;
+    border-bottom: 16px solid #EAF0F7;
+    z-index: 1;
+}
+
+#seesea-navbar .menu .menu-item {
+    height: 50%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #EAF0F7;
+    outline: none;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: left;
+    padding-left: 15px;
+    color: #67758D;
+}
+
+#seesea-navbar .menu .menu-item:hover {
+    background-color: #DEEEFF;
 }

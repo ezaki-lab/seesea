@@ -1,0 +1,89 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.Login {
+    background-color: #F6F9FC;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Noto Sans Japanese', sans-serif;
+}
+
+.Login .form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 300px;
+    width: 400px;
+    margin: auto;
+    background-color: white;
+}
+
+.Login .content {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+.Login .inputtitle {
+    color: #97A4BA;
+    width: 100%;
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+.Login .input {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    color: #67758D;
+    font-size: 15px;
+    background-color: #F6F9FC;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #C4CFDD;
+    border-radius: 6px;
+    padding-left: 15px;
+    outline: none;
+}
+
+.Login .input:hover {
+    background-color: white;
+}
+
+.Login .button {
+    height: 40px;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    background-color: #4E96E4;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #C4CFDD;
+    border-radius: 6px;
+    cursor: pointer;
+    outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #C4CFDD;
+  -webkit-text-fill-color: #67758D;
+  -webkit-box-shadow: 0 0 0px 1000px #F9FEB9 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
