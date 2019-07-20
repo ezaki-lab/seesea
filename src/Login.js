@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
-import Dashboard from './Dashboard.js';
+import Dashboard from './dashboard/Dashboard.js';
 import firebase from './firebase.js'
 import './Login.css';
 import './components/Base/Base.css'
@@ -45,7 +45,6 @@ class Login extends Component {
         if (authenticated) {
             return (
                 <BrowserRouter>
-                    <Redirect to="dashboard" />
                     <Route path='/dashboard' component={Dashboard} />
                 </BrowserRouter>
             )

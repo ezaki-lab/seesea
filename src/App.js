@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import Login from './Login.js';
-import Dashboard from './Dashboard.js';
+import Dashboard from './dashboard/Dashboard.js';
 import firebase from './firebase.js'
 
 class App extends Component {
@@ -45,7 +45,6 @@ class App extends Component {
             <div className="App">
                 <BrowserRouter>
                     <Redirect to={path} />
-
                     <Route path='/login' component={Login} />
                     <Route path='/dashboard' component={Dashboard} />
                 </BrowserRouter>
