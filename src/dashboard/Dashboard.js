@@ -7,18 +7,18 @@ import {
 } from "react-device-detect";
 import './Dashboard.css'
 
-import AllDayScheduleGraph from './components/AllDayScheduleGraph/AllDayScheduleGraph.js'
-import Camera from './components/Camera/Camera.js'
-import Card from './components/Card/Card.js'
-import OneDayScheduleGraph from './components/OneDayScheduleGraph/OneDayScheduleGraph.js'
-import PickDate from './components/PickDate/PickDate.js'
-import Navbar from './components/Navbar/Navbar.js'
-import TideChart from './components/TideChart/TideChart.js'
+import AllDayScheduleGraph from '../components/AllDayScheduleGraph/AllDayScheduleGraph.js'
+import Camera from '../components/Camera/Camera.js'
+import Card from '../components/Card/Card.js'
+import OneDayScheduleGraph from '../components/OneDayScheduleGraph/OneDayScheduleGraph.js'
+import PickDate from '../components/PickDate/PickDate.js'
+import Navbar from '../components/Navbar/Navbar.js'
+import TideChart from '../components/TideChart/TideChart.js'
 
 import clock from './images/Card/clock.png'
 import fish from './images/Card/fish.png'
-import usericon from './images/usericon.png'
 import waterdrop from './images/Card/waterdrop.png'
+import usericon from '../images/usericon.png'
 
 class Dashboard extends Component {
   constructor() {
