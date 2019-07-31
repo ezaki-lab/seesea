@@ -34,13 +34,13 @@
     display:table;
     text-align: center;
     background-color: #67758D;
-    color: white;
-    font-size: 15px;
 }
 
 #seesea-display .name-content .name {
     display:table-cell;
     vertical-align:middle;
+    color: white;
+    font-size: 15px;
 }
 
 #seesea-display .description-content {
@@ -76,13 +76,30 @@
     color: #C4CFDD;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+    #seesea-display .name-content .name {
+        font-size: 13px;
+    }
 
+    #seesea-display .description-content .data {
+        font-size: 20px;
+    }
+    
+    #seesea-display .description-content .label {
+        font-size: 10px;
+    }
+}
+  
+@media (min-width: 320px) and (max-width: 480px) {
+    #seesea-display .name-content .name {
+        font-size: 13px;
+    }
 
-/* 
-<div className='description-content'>
-                        <div className='elapsed-days-label'>経過日数</div>
-                        <div className='elapsed-days'>360日</div>
-                        <div className='fish-weight-label'>魚の重さ</div>
-                        <div className='fish-weight'>750g</div>
-                    </div>
-*/
+    #seesea-display .description-content .data {
+        font-size: 20px;
+    }
+    
+    #seesea-display .description-content .label {
+        font-size: 10px;
+    }
+}
