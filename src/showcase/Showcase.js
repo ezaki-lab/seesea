@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter,
+    Route,
+    Link
+} from 'react-router-dom'
 import GridLayout from 'react-grid-layout';
+import Dashboard from '../dashboard/Dashboard.js'
 import Navbar from '../components/Navbar/Navbar.js'
 import Display from '../components/Display/Display.js'
 import user from '../user.js'
@@ -19,8 +25,12 @@ class Showcase extends Component {
 
     componentWillMount() {
         window.addEventListener('resize', () => {
-          this.getWindowSize();
+            this.getWindowSize();
         });
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.getWindowSize);
     }
 
     getWindowSize() {
@@ -50,21 +60,32 @@ class Showcase extends Component {
         ];
         return (
             <div id="Showcase">
-              <Navbar user={user} style={{zIndex:1000}}></Navbar>
-              <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
+                <Navbar user={user} style={{zIndex:1000}}></Navbar>
+                <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
                     <div key="display0">
-                        <Display raftId={5018}></Display>
+                        <Link to={'/dashboard/' + 5018} style={{textDecoration: 'none'}}>
+                            <Display raftId={5018}></Display>
+                        </Link>
                     </div>
                     <div key="display1">
-                        <Display raftId={5012}></Display>
+                        <Link to={'/dashboard/' + 5012} style={{textDecoration: 'none'}}>
+                            <Display raftId={5012}></Display>
+                        </Link>
                     </div>
                     <div key="display2">
-                        <Display raftId={5022}></Display>
+                        <Link to={'/dashboard/' + 5022} style={{textDecoration: 'none'}}>
+                            <Display raftId={5022}></Display>
+                        </Link>
                     </div>
                     <div key="display3">
-                        <Display raftId={5024}></Display>
+                        <Link to={'/dashboard/' + 5024} style={{textDecoration: 'none'}}>
+                            <Display raftId={5024}></Display>
+                        </Link>
                     </div>
-              </GridLayout>
+                </GridLayout>
+                <BrowserRouter>
+                    <Route path='/dashboard/:id' component={Dashboard}></Route>
+                </BrowserRouter>
             </div>
           )
     }

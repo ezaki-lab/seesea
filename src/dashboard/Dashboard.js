@@ -22,16 +22,21 @@ import waterdrop from './images/Card/waterdrop.png'
 
 
 class Dashboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.getWindowSize = this.getWindowSize.bind(this);
+
+    const { params } = this.props.match;
+    const raftId = params.id;
+
     this.state = {
       date: new Date(),
       windowSize: {
         width: window.innerWidth,
         height: window.innerHeight,
       },
+      raftId: raftId,
       cards: [
         {
           title: "経過日数",
@@ -73,6 +78,10 @@ class Dashboard extends Component {
     });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.getWindowSize);
+  }
+
   handleDateChange(date) {
     this.setState({ date: date });
   }
@@ -98,14 +107,14 @@ class Dashboard extends Component {
       cols = 2;
       rowHeight = 40;
       layout = [
-        { i: 'pickdate',      x: 0, y: 0, w: 1, h: 1, static: true },
-        { i: 'card-date',     x: 0, y: 1, w: 1, h: 2, static: true },
+        { i: 'pickdate', x: 0, y: 0, w: 1, h: 1, static: true },
+        { i: 'card-date', x: 0, y: 1, w: 1, h: 2, static: true },
         { i: 'card-fishsize', x: 1, y: 1, w: 1, h: 2, static: true },
-        { i: 'card-water',    x: 0, y: 3, w: 1, h: 2, static: true },
-        { i: 'camera',        x: 0, y: 5, w: 2, h: 5, static: true },
-        { i: 'onedaygraph',   x: 0, y: 10, w: 2, h: 5, static: true },
-        { i: 'alldaygraph',   x: 0, y: 15, w: 2, h: 5, static: true },
-        { i: 'tidechart',     x: 0, y: 20, w: 2, h: 5, static: true },
+        { i: 'card-water', x: 0, y: 3, w: 1, h: 2, static: true },
+        { i: 'camera', x: 0, y: 5, w: 2, h: 5, static: true },
+        { i: 'onedaygraph', x: 0, y: 10, w: 2, h: 5, static: true },
+        { i: 'alldaygraph', x: 0, y: 15, w: 2, h: 5, static: true },
+        { i: 'tidechart', x: 0, y: 20, w: 2, h: 5, static: true },
       ];
     }
     if (isTablet || isBrowser) {
@@ -113,21 +122,21 @@ class Dashboard extends Component {
       cols = 12;
       rowHeight = 40;
       layout = [
-        { i: 'pickdate',      x: 0, y: 0, w: 1.7, h: 1, static: true },
-        { i: 'card-date',     x: 0, y: 1, w: 3, h: 2, static: true },
+        { i: 'pickdate', x: 0, y: 0, w: 1.7, h: 1, static: true },
+        { i: 'card-date', x: 0, y: 1, w: 3, h: 2, static: true },
         { i: 'card-fishsize', x: 3, y: 1, w: 3, h: 2, static: true },
-        { i: 'card-water',    x: 6, y: 1, w: 3, h: 2, static: true },
-        { i: 'camera',        x: 0, y: 3, w: 4, h: 5, static: true },
-        { i: 'onedaygraph',   x: 4, y: 3, w: 4, h: 5, static: true },
-        { i: 'alldaygraph',   x: 0, y: 8, w: 8, h: 4, static: true },
-        { i: 'tidechart',     x: 0, y: 12, w: 4, h: 5, static: true },
+        { i: 'card-water', x: 6, y: 1, w: 3, h: 2, static: true },
+        { i: 'camera', x: 0, y: 3, w: 4, h: 5, static: true },
+        { i: 'onedaygraph', x: 4, y: 3, w: 4, h: 5, static: true },
+        { i: 'alldaygraph', x: 0, y: 8, w: 8, h: 4, static: true },
+        { i: 'tidechart', x: 0, y: 12, w: 4, h: 5, static: true },
       ];
     }
     return (
       <div className="Dashboard">
-        <Navbar user={user} style={{zIndex:1000}}></Navbar>
+        <Navbar user={user} style={{ zIndex: 1000 }}></Navbar>
         <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
-          <div key="pickdate" style={{zIndex:100}}>
+          <div key="pickdate" style={{ zIndex: 100 }}>
             <PickDate onDayChange={this.handleDateChange} ></PickDate>
           </div>
           <div key="card-date">
@@ -140,7 +149,7 @@ class Dashboard extends Component {
             <Card card={this.state.cards[2]}></Card>
           </div>
           <div key="camera">
-            <Camera date={this.state.date} raftId={5018}></Camera>
+            <Camera date={this.state.date} raftId={this.state.raftId}></Camera>
           </div>
           <div key="onedaygraph">
             <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>

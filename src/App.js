@@ -52,7 +52,7 @@ class App extends Component {
                     <Route exact path="/" component={() => <Redirect to="/showcase" />}/>
                     <Route path='/login' component={Login} />
                     <Route path='/showcase' component={Showcase} />
-                    <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/dashboard/:id' component={Dashboard} />
                 </BrowserRouter>
             </div>
         );
