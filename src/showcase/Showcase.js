@@ -4,6 +4,11 @@ import {
     Route,
     Link
 } from 'react-router-dom'
+import {
+    isBrowser,
+    isMobile,
+    isTablet,
+} from "react-device-detect";
 import GridLayout from 'react-grid-layout';
 import Dashboard from '../dashboard/Dashboard.js'
 import Navbar from '../components/Navbar/Navbar.js'
@@ -16,8 +21,8 @@ class Showcase extends Component {
         super(props);
         this.state = {
             windowSize: {
-              width: window.innerWidth,
-              height: window.innerHeight,
+                width: window.innerWidth,
+                height: window.innerHeight,
             },
         }
         this.getWindowSize = this.getWindowSize.bind(this);
@@ -37,8 +42,8 @@ class Showcase extends Component {
         let width = window.innerWidth;
         let height = window.innerHeight;
         let wsize = {
-          width: width,
-          height: height,
+            width: width,
+            height: height,
         };
         this.setState({ windowSize: wsize });
     }
@@ -49,36 +54,49 @@ class Showcase extends Component {
         var cols = 0;
         var rowHeight = 0;
         let wsize = this.state.windowSize;
-        margin = [50, 50];
-        cols = 2;
-        rowHeight = 300;
-        layout = [
-          { i: 'display0', x: 0, y: 0, w: 1, h: 1, static: true },
-          { i: 'display1', x: 1, y: 0, w: 1, h: 1, static: true },
-          { i: 'display2', x: 0, y: 1, w: 1, h: 1, static: true },
-          { i: 'display3', x: 1, y: 1, w: 1, h: 1, static: true },
-        ];
+        if (isMobile) {
+            margin = [20, 20];
+            cols = 1;
+            rowHeight = 200;
+            layout = [
+                { i: 'display0', x: 0, y: 0, w: 1, h: 1, static: true },
+                { i: 'display1', x: 0, y: 1, w: 1, h: 1, static: true },
+                { i: 'display2', x: 0, y: 2, w: 1, h: 1, static: true },
+                { i: 'display3', x: 0, y: 3, w: 1, h: 1, static: true },
+            ];
+        }
+        if (isTablet || isBrowser) {
+            margin = [50, 50];
+            cols = 2;
+            rowHeight = 300;
+            layout = [
+                { i: 'display0', x: 0, y: 0, w: 1, h: 1, static: true },
+                { i: 'display1', x: 1, y: 0, w: 1, h: 1, static: true },
+                { i: 'display2', x: 0, y: 1, w: 1, h: 1, static: true },
+                { i: 'display3', x: 1, y: 1, w: 1, h: 1, static: true },
+            ];
+        }
         return (
             <div id="Showcase">
-                <Navbar user={user} style={{zIndex:1000}}></Navbar>
+                <Navbar user={user} style={{ zIndex: 1000 }}></Navbar>
                 <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
                     <div key="display0">
-                        <Link to={'/dashboard/' + 5018} style={{textDecoration: 'none'}}>
+                        <Link to={'/dashboard/' + 5018} style={{ textDecoration: 'none' }}>
                             <Display raftId={5018}></Display>
                         </Link>
                     </div>
                     <div key="display1">
-                        <Link to={'/dashboard/' + 5012} style={{textDecoration: 'none'}}>
+                        <Link to={'/dashboard/' + 5012} style={{ textDecoration: 'none' }}>
                             <Display raftId={5012}></Display>
                         </Link>
                     </div>
                     <div key="display2">
-                        <Link to={'/dashboard/' + 5022} style={{textDecoration: 'none'}}>
+                        <Link to={'/dashboard/' + 5022} style={{ textDecoration: 'none' }}>
                             <Display raftId={5022}></Display>
                         </Link>
                     </div>
                     <div key="display3">
-                        <Link to={'/dashboard/' + 5024} style={{textDecoration: 'none'}}>
+                        <Link to={'/dashboard/' + 5024} style={{ textDecoration: 'none' }}>
                             <Display raftId={5024}></Display>
                         </Link>
                     </div>
@@ -87,7 +105,7 @@ class Showcase extends Component {
                     <Route path='/dashboard/:id' component={Dashboard}></Route>
                 </BrowserRouter>
             </div>
-          )
+        )
     }
 
 }
