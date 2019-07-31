@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import Login from './Login.js';
 import Dashboard from './dashboard/Dashboard.js';
+import Showcase from './showcase/Showcase.js'
 import firebase from './firebase.js'
 
 class App extends Component {
@@ -37,15 +38,20 @@ class App extends Component {
         const { authenticated, loading } = this.state;
         if (loading) return <p>loading..</p>;
 
-        var path = "/login";
-        if (authenticated) {
-            path = "/dashboard";
+        if (authenticated === false) {
+            return (
+                <BrowserRouter>
+                    <Redirect to={'/login'} />
+                    <Route path='/login' component={Login} />
+                </BrowserRouter>
+            )
         }
         return (
             <div className="App">
                 <BrowserRouter>
-                    <Redirect to={path} />
+                    <Route exact path="/" component={() => <Redirect to="/showcase" />}/>
                     <Route path='/login' component={Login} />
+                    <Route path='/showcase' component={Showcase} />
                     <Route path='/dashboard' component={Dashboard} />
                 </BrowserRouter>
             </div>

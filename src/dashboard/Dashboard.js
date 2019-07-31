@@ -15,10 +15,11 @@ import PickDate from '../components/PickDate/PickDate.js'
 import Navbar from '../components/Navbar/Navbar.js'
 import TideChart from '../components/TideChart/TideChart.js'
 
+import user from '../user.js'
 import clock from './images/Card/clock.png'
 import fish from './images/Card/fish.png'
 import waterdrop from './images/Card/waterdrop.png'
-import usericon from '../images/usericon.png'
+
 
 class Dashboard extends Component {
   constructor() {
@@ -30,10 +31,6 @@ class Dashboard extends Component {
       windowSize: {
         width: window.innerWidth,
         height: window.innerHeight,
-      },
-      user: {
-        name: "山田太郎",
-        icon: usericon
       },
       cards: [
         {
@@ -128,7 +125,7 @@ class Dashboard extends Component {
     }
     return (
       <div className="Dashboard">
-        <Navbar user={this.state.user} style={{zIndex:1000}}></Navbar>
+        <Navbar user={user} style={{zIndex:1000}}></Navbar>
         <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
           <div key="pickdate" style={{zIndex:100}}>
             <PickDate onDayChange={this.handleDateChange} ></PickDate>
@@ -143,7 +140,7 @@ class Dashboard extends Component {
             <Card card={this.state.cards[2]}></Card>
           </div>
           <div key="camera">
-            <Camera date={this.state.date} url="http://uoccya.ise-hp.com/cages/lastimg/5018"></Camera>
+            <Camera date={this.state.date} raftId={5018}></Camera>
           </div>
           <div key="onedaygraph">
             <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>

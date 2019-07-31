@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import './Camera.css'
+import './Display.css'
 import '../Base/Base.css'
 
-class Camera extends Component {
+class Display extends Component {
     constructor(props) {
         super(props);
 
@@ -43,8 +43,8 @@ class Camera extends Component {
     }
 
     getComponentSize() {
-        let height = document.getElementById('seesea-camera').clientHeight;
-        let width = document.getElementById('seesea-camera').clientWidth;
+        let height = document.getElementById('seesea-display').clientHeight;
+        let width = document.getElementById('seesea-display').clientWidth;
         this.setState({
             size: {
                 height: height,
@@ -54,28 +54,40 @@ class Camera extends Component {
     }
 
     render() {
-        let height = this.state.size.height;
-        let width = this.state.size.width;
+        var style = {
+            zIndex: 500,
+            width: '100%',
+            height: '100%'
+        }
+        const { width, height } = this.props;
+        if (width) {
+            style.width = width;
+        }
+        if (height) {
+            style.height = height;
+        }
+
         const { image_url } = this.state;
+
         return (
-            <div id="seesea-camera" className='base'>
-                <span className='base-title-large'>カメラ</span>
-                <img
-                    id="canvas"
-                    src={image_url}
-                    style={{
-                        marginTop: 50,
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        height: height - 60,
-                        width: width - 30,
-                        backgroundColor: "#F6F9FC"
-                    }}
-                ></img>
+            <div id="seesea-display" className='base' style={style}>
+                <div className='info-content'>
+                    <div className='name-content'>
+                        <div className='name'>養殖筏1</div>
+                    </div>
+                    <div className='description-content'>
+                        <div className='elapsed-days-label label'>経過日数</div>
+                        <div className='elapsed-days data'>360日</div>
+                        <div className='fish-weight-label label'>魚の重さ</div>
+                        <div className='fish-weight data'>750g</div>
+                    </div>
+                </div>
+                <div className='image-content'>
+                    <img id="canvas" src={image_url} ></img>
+                </div>
             </div>
         )
     }
-
 }
 
-export default Camera
+export default Display;
