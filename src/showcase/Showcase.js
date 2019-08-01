@@ -81,28 +81,28 @@ class Showcase extends Component {
                 <Navbar user={user} style={{ zIndex: 1000 }}></Navbar>
                 <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
                     <div key="display0">
-                        <Link to={'/dashboard/' + 5018} style={{ textDecoration: 'none' }}>
+                        <Link to={'/cages/'+5018+'/dashboard'} style={{ textDecoration: 'none' }}>
                             <Display raftId={5018}></Display>
                         </Link>
                     </div>
                     <div key="display1">
-                        <Link to={'/dashboard/' + 5012} style={{ textDecoration: 'none' }}>
+                        <Link to={'/cages/'+5012+'/dashboard'} style={{ textDecoration: 'none' }}>
                             <Display raftId={5012}></Display>
                         </Link>
                     </div>
                     <div key="display2">
-                        <Link to={'/dashboard/' + 5022} style={{ textDecoration: 'none' }}>
+                        <Link to={'/cages/'+5022+'/dashboard'} style={{ textDecoration: 'none' }}>
                             <Display raftId={5022}></Display>
                         </Link>
                     </div>
                     <div key="display3">
-                        <Link to={'/dashboard/' + 5024} style={{ textDecoration: 'none' }}>
+                        <Link to={'/cages/'+5024+'/dashboard'} style={{ textDecoration: 'none' }}>
                             <Display raftId={5024}></Display>
                         </Link>
                     </div>
                 </GridLayout>
                 <BrowserRouter>
-                    <Route path='/dashboard/:id' component={Dashboard}></Route>
+                    <Route path='/cages/:id/dashboard' component={Dashboard}></Route>
                 </BrowserRouter>
             </div>
         )
