@@ -45,8 +45,8 @@ class Login extends Component {
         if (authenticated) {
             return (
                 <BrowserRouter>
-                    <Redirect to={'/showcase'} />
-                    <Route path='/showcase' component={Showcase} />
+                    <Redirect to={'/cages/showcase'} />
+                    <Route path='/cages/showcase' component={Showcase} />
                 </BrowserRouter>
             )
         }

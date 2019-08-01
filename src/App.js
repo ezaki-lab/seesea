@@ -49,10 +49,10 @@ class App extends Component {
         return (
             <div className="App">
                 <BrowserRouter>
-                    <Route exact path="/" component={() => <Redirect to="/showcase" />}/>
+                    <Route exact path="/" component={() => <Redirect to="/cages/showcase" />}/>
                     <Route path='/login' component={Login} />
-                    <Route path='/showcase' component={Showcase} />
-                    <Route path='/dashboard/:id' component={Dashboard} />
+                    <Route path='/cages/showcase' component={Showcase} />
+                    <Route path='/cages/:id/dashboard' component={Dashboard} />
                 </BrowserRouter>
             </div>
         );
