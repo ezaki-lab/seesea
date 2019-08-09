@@ -5,6 +5,7 @@ import './Navbar.css'
 import '../Base/Base.css'
 
 import logo from '../../images/logo.png'
+import defaultIcon from '../../images/defaultIcon.png'
 
 
 class Navbar extends Component {
@@ -13,10 +14,16 @@ class Navbar extends Component {
 
         this.state = {
             showMenu: false,
+            user: {
+                name: "",
+                icon: defaultIcon
+            }
         };
 
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+
+        this.startFetchUserDataFromFirebase();
     }
 
     componentWillUnmount() {
@@ -48,6 +55,27 @@ class Navbar extends Component {
         firebase.auth().signOut()
     }
 
+    startFetchUserDataFromFirebase() {
+        var userId = firebase.auth().currentUser.uid;
+        firebase.database().ref('users/' + userId).on('value', snapshot => {
+            firebase.storage().refFromURL(snapshot.val()['icon_path']).getDownloadURL().then(function (url) {
+                this.setState({
+                    user: {
+                        name: snapshot.val()['name'],
+                        icon: url
+                    }
+                });
+            }.bind(this)).catch(function (error) {
+                this.setState({
+                    user: {
+                        name: snapshot.val()['name'],
+                        icon: defaultIcon
+                    }
+                });
+            }.bind(this));
+        });
+    }
+
     render() {
         return (
             <div id='seesea-navbar'>
@@ -56,8 +84,8 @@ class Navbar extends Component {
                     <div className='arrow'>
                         <div className='arrow-icon'></div>
                     </div>
-                    <b className='username'>{this.props.user.name}</b>
-                    <img className='usericon' src={this.props.user.icon} />
+                    <b className='username'>{this.state.user.name}</b>
+                    <img className='usericon' src={this.state.user.icon} />
                 </button>
 
                 {
