@@ -13,7 +13,6 @@ import GridLayout from 'react-grid-layout';
 import Dashboard from '../dashboard/Dashboard.js'
 import Navbar from '../components/Navbar/Navbar.js'
 import Display from '../components/Display/Display.js'
-import user from '../user.js'
 import './Showcase.css'
 
 class Showcase extends Component {
@@ -78,7 +77,7 @@ class Showcase extends Component {
         }
         return (
             <div id="Showcase">
-                <Navbar user={user} style={{ zIndex: 1000 }}></Navbar>
+                <Navbar style={{ zIndex: 1000 }}></Navbar>
                 <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
                     <div key="display0">
                         <Link to={'/cages/'+5018+'/dashboard'} style={{ textDecoration: 'none' }}>
