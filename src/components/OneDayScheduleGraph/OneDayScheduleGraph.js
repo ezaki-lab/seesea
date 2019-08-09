@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactApexChart from 'react-apexcharts'
+import ApexChart from 'react-apexcharts'
 
 import { LoadingOverlay, Loader } from 'react-overlay-loader';
 
@@ -154,7 +154,7 @@ class OneDayScheduleGraph extends Component {
                 <LoadingOverlay style={{ width: width, height: height }}>
                     <span className='base-title-large'>給餌スケジュール</span>
                     <div className='chart'>
-                        <ReactApexChart options={options} series={series} width="100%" height="100%" type={'heatmap'} />
+                        <ApexChart options={options} series={series} width="100%" height="100%" type={'heatmap'} />
                     </div>
                     <Loader loading={isLoadingActive} />
                 </LoadingOverlay>
