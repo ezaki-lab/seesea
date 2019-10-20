@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactApexChart from 'react-apexcharts'
+import ApexChart from 'react-apexcharts'
 
 import { LoadingOverlay, Loader } from 'react-overlay-loader';
 
@@ -91,22 +91,22 @@ class OneDayScheduleGraph extends Component {
     }
 
     getFeedSchedule(date) {
-        console.log("request get feed schedule from https://feed-api-ezaki-lab.herokuapp.com/feeds/oneday")
+        console.log("request get feed schedule from https://feed-api-ezaki-lab.herokuapp.com/feeds/today")
         this.setState({
             requestStatus: RequestStateType.loading
         });
 
-        var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/oneday"
+        var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/today"
         // var url = "http://localhost:8080/feeds/oneday"
         var schedule = [];
         fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({ 'date': this.dateToString(date) }),
+            method: 'GET',
+            // body: JSON.stringify({ 'date': this.dateToString(date) }),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            if (response.status === 201) {
+            if (response.status === 200) {
                 return response.json();
             }
         }).then(json => {
@@ -154,7 +154,7 @@ class OneDayScheduleGraph extends Component {
                 <LoadingOverlay style={{ width: width, height: height }}>
                     <span className='base-title-large'>給餌スケジュール</span>
                     <div className='chart'>
-                        <ReactApexChart options={options} series={series} width="100%" height="100%" type={'heatmap'} />
+                        <ApexChart options={options} series={series} width="100%" height="100%" type={'heatmap'} />
                     </div>
                     <Loader loading={isLoadingActive} />
                 </LoadingOverlay>
