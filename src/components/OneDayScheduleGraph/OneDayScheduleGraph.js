@@ -91,22 +91,22 @@ class OneDayScheduleGraph extends Component {
     }
 
     getFeedSchedule(date) {
-        console.log("request get feed schedule from https://feed-api-ezaki-lab.herokuapp.com/feeds/oneday")
+        console.log("request get feed schedule from https://feed-api-ezaki-lab.herokuapp.com/feeds/today")
         this.setState({
             requestStatus: RequestStateType.loading
         });
 
-        var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/oneday"
+        var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/today"
         // var url = "http://localhost:8080/feeds/oneday"
         var schedule = [];
         fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({ 'date': this.dateToString(date) }),
+            method: 'GET',
+            // body: JSON.stringify({ 'date': this.dateToString(date) }),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            if (response.status === 201) {
+            if (response.status === 200) {
                 return response.json();
             }
         }).then(json => {
