@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { ComposedChart, Legend, Bar, Area, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+// import { ComposedChart, Legend, Bar, Area, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import ApexChart from 'react-apexcharts'
 
 import { LoadingOverlay, Loader } from 'react-overlay-loader';
 
@@ -23,14 +24,16 @@ class AllDayScheduleGraph extends Component {
                 width: 0
             },
             requestStatus: RequestStateType.none,
-            schedule: {
-                // waterTemperature: [14, 9, 6, 3, 5, 10, 16, 21, 26, 30, 28, 23, 18, 13, 8, 3, 6, 11, 16, 21, 26, 29, 25, 20],
-                // fishSizes: [0, 50, 110, 160, 210, 300, 340, 380, 420, 460, 500, 550, 660, 720, 780, 830, 940, 990, 1040, 1100, 1200, 1250, 1300],
-                // dayFeeds: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 390, 395, 400]
-                fishSizes: [],
-                dayFeeds: [],
-                dates: []
-            }
+            selection: 'one_year',
+            xaxisDate: {
+                start: null,
+                end: null,
+            },
+            series: [{
+                name: '給餌量',
+                type: 'area',
+                data: [],
+            }],
         }
     }
 
@@ -75,20 +78,34 @@ class AllDayScheduleGraph extends Component {
         }
     }
 
-    makeDataPointsFromSchedule(schedule) {
+    componentWillUpdate() {
+        options.xaxis.min = this.state.xaxisDate.start;
+    }
+
+    makeFeedDataPoints(dates, dayFeeds) {
         var dataPoints = []
-        for (var i in schedule.dayFeeds) {
-            var point = {
-                month: i.toString(),
-                // waterTemperature: schedule.waterTemperature[i], 
-                fishSize: schedule.fishSizes[i],
-                dayFeed: schedule.dayFeeds[i],
-                date: schedule.dates[i],
-            }
+        for (var i in dates) {
+            var point = [
+                dates[i],
+                dayFeeds[i]
+            ]
             dataPoints.push(point)
         }
         return dataPoints
     }
+
+    makeFishSizeDataPoints(dates, fishSizes) {
+        var dataPoints = []
+        for (var i in dates) {
+            var point = [
+                dates[i],
+                fishSizes[i]
+            ]
+            dataPoints.push(point)
+        }
+        return dataPoints
+    }
+
 
     getComponentSize() {
         let height = document.getElementById('seesea-alldaygraph').clientHeight;
@@ -140,18 +157,25 @@ class AllDayScheduleGraph extends Component {
             console.error('Error:', error);
         }).finally(() => {
             this.setState({
-                schedule: {
-                    fishSizes: fishSizes,
-                    dayFeeds: dayFeeds,
-                    dates: dates
-                },
+                series: [
+                    {
+                        name: '給餌量',
+                        type: 'area',
+                        data: this.makeFeedDataPoints(dates, dayFeeds),
+                    },
+                    {
+                        name: '魚の重さ',
+                        type: 'line',
+                        data: this.makeFishSizeDataPoints(dates, fishSizes),
+                    },
+                ],
+                startDate: new Date(dates[0]).getTime(),
                 requestStatus: RequestStateType.success
             });
         });
     }
 
     render() {
-        let dataPoints = this.makeDataPointsFromSchedule(this.state.schedule);
         let height = this.state.size.height;
         let width = this.state.size.width;
 
@@ -164,32 +188,9 @@ class AllDayScheduleGraph extends Component {
             <div id="seesea-alldaygraph" className="base">
                 <LoadingOverlay style={{ width: width, height: height }}>
                     <span className='base-title-large'>養殖スケジュール</span>
-                    <ComposedChart width={width} height={height} data={dataPoints} margin={{ top: 60, right: 20, bottom: 10, left: 10 }}>
-                        <defs>
-                            <linearGradient id="gradient-water" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#3A96FD" stopOpacity={0.2} />
-                                <stop offset="95%" stopColor="#3A96FD" stopOpacity={0.0} />
-                            </linearGradient>
-                            <linearGradient id="gradient-fishsize" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#9D60FB" stopOpacity={0.2} />
-                                <stop offset="95%" stopColor="#9D60FB" stopOpacity={0.0} />
-                            </linearGradient>
-                            <linearGradient id="gradient-dayfeeds" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="30%" stopColor="#F3B92D" stopOpacity={1.0} />
-                                <stop offset="70%" stopColor="#FCA137" stopOpacity={1.0} />
-                            </linearGradient>
-                        </defs>
-                        <CartesianGrid stroke="#8097B1" strokeOpacity={0.4} strokeWidth={0.5} strokeDasharray="3 5" />
-                        {/* <Area yAxisId={0} dataKey="waterTemperature" type="monotone" stroke="#3A96FD" fillOpacity={1} fill="url(#gradient-water)" /> */}
-                        <Area yAxisId={0} dataKey="fishSize" type="monotone" stroke="#9D60FB" fillOpacity={1} fill="url(#gradient-fishsize)" />
-                        <Bar yAxisId={1} dataKey='dayFeed' barSize={10} fill="url(#gradient-dayfeeds)" />
-                        <XAxis dataKey="date" stroke="#E0E7FF" tick={{ fill: "#97A4BA" }} />
-                        {/* <YAxis yAxisId={0} dataKey="waterTemperature" stroke="#E0E7FF" tick={{ fill: "#97A4BA" }} /> */}
-                        <YAxis yAxisId={0} dataKey="fishSize" stroke="#E0E7FF" tick={{ fill: "#97A4BA" }} />
-                        <YAxis yAxisId={1} dataKey="dayFeed" stroke="#E0E7FF" tick={{ fill: "#97A4BA" }} />
-                        <Tooltip />
-                        <Legend />
-                    </ComposedChart>
+                    <div className='chart'>
+                        <ApexChart options={options} series={this.state.series} type="area" width="100%" height="100%" />
+                    </div>
                     <Loader loading={isLoadingActive} />
                 </LoadingOverlay>
             </div>
@@ -198,3 +199,121 @@ class AllDayScheduleGraph extends Component {
 }
 
 export default AllDayScheduleGraph;
+
+var options = {
+    chart: {
+        toolbar: {
+            show: false
+        },
+        animations: {
+            enabled: false,
+        },
+    },
+    legend: {
+        show: true,
+        position: 'top'
+    },
+    colors: ['#F5B22F', '#9D60FB'],
+    annotations: {
+        xaxis: [{
+            borderColor: '#999',
+            yAxisIndex: 0,
+            label: {
+                show: true,
+                text: 'Today',
+                style: {
+                    color: "#fff",
+                    background: '#775DD0'
+                }
+            }
+        }]
+    },
+    dataLabels: {
+        enabled: false
+    },
+    markers: {
+        size: 0,
+        style: 'hollow',
+    },
+    xaxis: {
+        type: 'datetime',
+        tickAmount: 6,
+        axisTicks: {
+            show: true,
+            color: '#CDD3E8'
+        },
+        axisBorder: {
+            show: true,
+            color: '#CDD3E8'
+        },
+        labels: {
+            style: {
+                colors: "#97A4BA",
+                fontSize: '12px',
+            },
+        },
+    },
+    yaxis: [
+        {
+            show: true,
+            axisTicks: {
+                show: true,
+            },
+            axisBorder: {
+                show: true,
+                color: '#CDD3E8'
+            },
+            labels: {
+                style: {
+                    color: '#97A4BA',
+                    fontSize: '12px',
+                },
+            },
+            tickAmount: 4,
+        },
+        {
+            show: true,
+            axisTicks: {
+                show: true,
+            },
+            axisBorder: {
+                show: true,
+                color: '#CDD3E8'
+            },
+            labels: {
+                style: {
+                    color: '#97A4BA',
+                    fontSize: '12px',
+                },
+            },
+            tickAmount: 4,
+        },
+    ],
+    tooltip: {
+        x: {
+            format: 'yyyy/MM/dd',
+        },
+        y: {
+            formatter: function (value, opt) {
+                // 給餌量
+                if (opt.seriesIndex === 0) {
+                    return value + " kg";
+                }
+                // 魚の重さ
+                else if (opt.seriesIndex === 1) {
+                    return value + " g";
+                }
+                return value;
+            },
+        },
+        theme: "dark",
+    },
+    fill: {
+        type: 'solid',
+        opacity: [0.2, 0.8],
+    },
+    stroke: {
+        width: 2,   
+    }
+    
+};
