@@ -24,9 +24,7 @@ class OneDayScheduleGraph extends Component {
                 width: 0
             },
             requestStatus: RequestStateType.none,
-            schedule: {
-                hourFeeds: []
-            },
+            schedule: [],
         };
     }
 
