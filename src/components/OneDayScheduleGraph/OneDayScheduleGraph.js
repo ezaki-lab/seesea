@@ -279,7 +279,7 @@ let options = {
                     if (Number.isInteger(opt) === false && opt !== undefined) {
                         // tooltip box label
                         // return parseInt(opt.series[opt.seriesIndex][opt.dataPointIndex]).toString();
-                        return opt;
+                        return value;
                     }
                     let newValue = parseInt(value);
                     if (Number.isNaN(newValue) === true) {
