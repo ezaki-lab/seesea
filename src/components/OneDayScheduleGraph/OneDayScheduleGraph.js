@@ -130,7 +130,7 @@ class OneDayScheduleGraph extends Component {
         for (var i in schedule) {
             var point = {
                 name: i.toString(),
-                data: [], // schedule[i],
+                data: schedule[i],
             }
             series.push(point);
         }
@@ -278,7 +278,8 @@ let options = {
                     }
                     if (Number.isInteger(opt) === false && opt !== undefined) {
                         // tooltip box label
-                        return parseInt(opt.series[opt.seriesIndex][opt.dataPointIndex]).toString();
+                        // return parseInt(opt.series[opt.seriesIndex][opt.dataPointIndex]).toString();
+                        return opt;
                     }
                     let newValue = parseInt(value);
                     if (Number.isNaN(newValue) === true) {
