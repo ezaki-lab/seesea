@@ -111,8 +111,6 @@ class OneDayScheduleGraph extends Component {
             if (json != null) {
                 schedule = json['schedule'];
                 console.log("success to get feed schedule");
-                console.log(schedule);
-                return schedule;
             }
             else {
                 console.error("failed to get feed schedule")
@@ -132,7 +130,7 @@ class OneDayScheduleGraph extends Component {
         for (var i in schedule) {
             var point = {
                 name: i.toString(),
-                data: schedule[i],
+                data: [], // schedule[i],
             }
             series.push(point);
         }
@@ -143,6 +141,8 @@ class OneDayScheduleGraph extends Component {
         let series = this.makeSeriesFromSchedule(this.state.schedule);
         let height = this.state.size.height;
         let width = this.state.size.width;
+
+        console.log(series);
 
         var isLoadingActive = false;
         if (this.state.requestStatus === RequestStateType.loading) {
