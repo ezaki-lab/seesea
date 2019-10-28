@@ -111,8 +111,9 @@ class OneDayScheduleGraph extends Component {
             }
         }).then(json => {
             if (json != null) {
-                console.log("success to get feed schedule");
                 schedule = json['schedule'];
+                console.log("success to get feed schedule");
+                console.log(schedule);
             }
             else {
                 console.error("failed to get feed schedule")
