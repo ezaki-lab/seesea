@@ -9,15 +9,13 @@ import './Dashboard.css'
 
 import AllDayScheduleGraph from '../components/AllDayScheduleGraph/AllDayScheduleGraph.js'
 import Camera from '../components/Camera/Camera.js'
-import Card from '../components/Card/Card.js'
+import CardWaterTemperature from '../components/Card/CardWaterTemperature.js'
+import CardFishWeight from '../components/Card/CardFishWeight'
+import CardElapsedDays from '../components/Card/CardElapsedDays'
 import OneDayScheduleGraph from '../components/OneDayScheduleGraph/OneDayScheduleGraph.js'
 import PickDate from '../components/PickDate/PickDate.js'
 import Navbar from '../components/Navbar/Navbar.js'
 import TideChart from '../components/TideChart/TideChart.js'
-
-import clock from './images/Card/clock.png'
-import fish from './images/Card/fish.png'
-import waterdrop from './images/Card/waterdrop.png'
 
 
 class Dashboard extends Component {
@@ -36,38 +34,6 @@ class Dashboard extends Component {
         height: window.innerHeight,
       },
       raftId: raftId,
-      cards: [
-        {
-          title: "経過日数",
-          symbol: clock,
-          data: "323日目",
-          addition: {
-            enable: false,
-            color: "",
-            text: ""
-          }
-        },
-        {
-          title: "魚の重さ（推定）",
-          symbol: fish,
-          data: "500g",
-          addition: {
-            enable: true,
-            color: "#4E96E4",
-            text: "サイズを入力"
-          }
-        },
-        {
-          title: "水温",
-          symbol: waterdrop,
-          data: "32℃",
-          addition: {
-            enable: true,
-            color: "#F35C5C",
-            text: "前日比 -2℃"
-          }
-        },
-      ]
     }
   }
 
@@ -139,13 +105,13 @@ class Dashboard extends Component {
             <PickDate onDayChange={this.handleDateChange} ></PickDate>
           </div>
           <div key="card-date">
-            <Card key="card-date" card={this.state.cards[0]}></Card>
+            <CardElapsedDays></CardElapsedDays>
           </div>
           <div key="card-fishsize">
-            <Card card={this.state.cards[1]}></Card>
+            <CardFishWeight></CardFishWeight>
           </div>
           <div key="card-water">
-            <Card card={this.state.cards[2]}></Card>
+            <CardWaterTemperature></CardWaterTemperature>
           </div>
           <div key="camera">
             <Camera date={this.state.date} raftId={this.state.raftId}></Camera>

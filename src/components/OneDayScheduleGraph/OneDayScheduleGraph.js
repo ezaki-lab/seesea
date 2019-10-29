@@ -142,8 +142,6 @@ class OneDayScheduleGraph extends Component {
         let height = this.state.size.height;
         let width = this.state.size.width;
 
-        console.log(series);
-
         var isLoadingActive = false;
         if (this.state.requestStatus === RequestStateType.loading) {
             isLoadingActive = true;
@@ -278,7 +276,6 @@ let options = {
                     }
                     if (Number.isInteger(opt) === false && opt !== undefined) {
                         // tooltip box label
-                        // return parseInt(opt.series[opt.seriesIndex][opt.dataPointIndex]).toString();
                         return value;
                     }
                     let newValue = parseInt(value);
