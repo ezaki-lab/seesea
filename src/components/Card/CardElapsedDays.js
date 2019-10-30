@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Card from './Card'
-import clock from './clock.png'
+import clock from './icons/clock.png'
 
 class CardElapsedDays extends Card {
     constructor(props) {

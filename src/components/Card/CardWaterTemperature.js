@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Card from './Card'
-import waterdrop from './waterdrop.png'
+import waterdrop from './icons/waterdrop.png'
 
 class CardWaterTemperature extends Card {
     constructor(props) {

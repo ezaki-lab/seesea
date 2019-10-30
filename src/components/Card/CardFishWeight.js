@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Card from './Card'
-import fish from './fish.png'
+import fish from './icons/fish.png'
 
 class CardFishWeight extends Card {
     constructor(props) {
