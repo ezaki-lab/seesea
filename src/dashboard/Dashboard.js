@@ -90,14 +90,14 @@ class Dashboard extends Component {
       rowHeight = 40;
       layout = [
         { i: 'pickdate', x: 0, y: 0, w: 1.7, h: 1, static: true },
-        { i: 'card-date', x: 0, y: 1, w: 3, h: 2, static: true },
-        { i: 'card-fishsize', x: 3, y: 1, w: 3, h: 2, static: true },
-        { i: 'card-water', x: 6, y: 1, w: 3, h: 2, static: true },
-        { i: 'card-feeds', x: 0, y: 3, w: 3, h: 2, static: true },
-        { i: 'camera', x: 0, y: 5, w: 4, h: 5, static: true },
-        { i: 'onedaygraph', x: 4, y: 5, w: 4, h: 5, static: true },
-        { i: 'alldaygraph', x: 0, y: 10, w: 8, h: 4, static: true },
-        { i: 'tidechart', x: 0, y: 14, w: 4, h: 5, static: true },
+        { i: 'card-date', x: 0, y: 1, w: 2, h: 2, static: true },
+        { i: 'card-fishsize', x: 2, y: 1, w: 2, h: 2, static: true },
+        { i: 'card-water', x: 4, y: 1, w: 2, h: 2, static: true },
+        { i: 'card-feeds', x: 6, y: 1, w: 2, h: 2, static: true },
+        { i: 'camera', x: 0, y: 3, w: 4, h: 5, static: true },
+        { i: 'onedaygraph', x: 4, y: 3, w: 4, h: 5, static: true },
+        { i: 'alldaygraph', x: 0, y: 8, w: 8, h: 4, static: true },
+        { i: 'tidechart', x: 0, y: 12, w: 4, h: 5, static: true },
       ];
     }
     return (

@@ -11,7 +11,7 @@ class CardElapsedDays extends Card {
             card: {
                 title: "経過日数",
                 symbol: clock,
-                data: "323日目",
+                data: "215日目",
                 addition: {
                     enable: false,
                     color: "",

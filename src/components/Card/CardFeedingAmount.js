@@ -20,7 +20,7 @@ class CardFeedingAmount extends Card {
             card: {
                 title: "給餌量",
                 symbol: feeds,
-                data: "100g",
+                data: "-",
                 addition: {
                     enable: false,
                     color: "",

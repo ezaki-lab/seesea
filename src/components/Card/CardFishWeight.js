@@ -11,9 +11,9 @@ class CardFishWeight extends Card {
             card: {
                 title: "魚の重さ（推定）",
                 symbol: fish,
-                data: "500g",
+                data: "530g",
                 addition: {
-                    enable: true,
+                    enable: false,
                     color: "#4E96E4",
                     text: "サイズを入力"
                 }
