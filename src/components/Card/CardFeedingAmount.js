@@ -71,10 +71,12 @@ class CardFeedingAmount extends Card {
             requestStatus: RequestStateType.loading
         });
 
+        const { raftId } = this.props;
         var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/today"
         var feedAmount = 0;
         fetch(url, {
-            method: 'GET',
+            method: 'POST',
+            body: JSON.stringify({ 'raft_id': raftId.toString() }),
             headers: {
                 'Content-Type': 'application/json'
             }

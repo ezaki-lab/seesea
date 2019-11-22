@@ -117,13 +117,13 @@ class Dashboard extends Component {
             <CardWaterTemperature></CardWaterTemperature>
           </div>
           <div key="card-feeds">
-            <CardFeedingAmount></CardFeedingAmount>
+            <CardFeedingAmount raftId={this.state.raftId}></CardFeedingAmount>
           </div>
           <div key="camera">
             <Camera date={this.state.date} raftId={this.state.raftId}></Camera>
           </div>
           <div key="onedaygraph">
-            <OneDayScheduleGraph date={this.state.date}></OneDayScheduleGraph>
+            <OneDayScheduleGraph date={this.state.date} raftId={this.state.raftId}></OneDayScheduleGraph>
           </div>
           <div key="alldaygraph">
             <AllDayScheduleGraph></AllDayScheduleGraph>

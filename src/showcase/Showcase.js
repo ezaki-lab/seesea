@@ -80,18 +80,18 @@ class Showcase extends Component {
                 <Navbar style={{ zIndex: 1000 }}></Navbar>
                 <GridLayout layout={layout} cols={cols} margin={margin} rowHeight={rowHeight} width={wsize.width}>
                     <div key="display0">
-                        <Link to={'/cages/'+5018+'/dashboard'} style={{ textDecoration: 'none' }}>
-                            <Display raftId={5018}></Display>
+                        <Link to={'/cages/'+5019+'/dashboard'} style={{ textDecoration: 'none' }}>
+                            <Display raftId={5019} name="AI給餌機"></Display>
                         </Link>
                     </div>
                     <div key="display1">
-                        <Link to={'/cages/'+5012+'/dashboard'} style={{ textDecoration: 'none' }}>
-                            <Display raftId={5012}></Display>
+                        <Link to={'/cages/'+5057+'/dashboard'} style={{ textDecoration: 'none' }}>
+                            <Display raftId={5057} name="ICT給餌機"></Display>
                         </Link>
                     </div>
                     <div key="display2">
-                        <Link to={'/cages/'+5022+'/dashboard'} style={{ textDecoration: 'none' }}>
-                            <Display raftId={5022}></Display>
+                        <Link to={'/cages/'+5058+'/dashboard'} style={{ textDecoration: 'none' }}>
+                            <Display raftId={5058} name="タイマー給餌機"></Display>
                         </Link>
                     </div>
                     <div key="display3">
