@@ -23,13 +23,12 @@ class Display extends Component {
             },
             getRaftImageInterval: null
         }
-
-        this.startFetchFishWeightFromFirebase();
-        this.startFetchElapsedDaysFromFirebase();
     }
 
     componentDidMount() {
         this.streamRaftImage();
+        this.startFetchFishWeightFromFirebase();
+        this.startFetchElapsedDaysFromFirebase();
         this.getComponentSize();
     }
 
