@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from '../../firebase.js'
 
 import Card from './Card'
 import clock from './icons/clock.png'
@@ -11,7 +12,7 @@ class CardElapsedDays extends Card {
             card: {
                 title: "経過日数",
                 symbol: clock,
-                data: "215日目",
+                data: "-",
                 addition: {
                     enable: false,
                     color: "",
@@ -19,6 +20,35 @@ class CardElapsedDays extends Card {
                 }
             },
         }
+    }
+
+    componentDidMount() {
+        this.startFetchElapsedDaysFromFirebase();
+    }
+
+    startFetchElapsedDaysFromFirebase() {
+        const { raftId } = this.props;
+        firebase.database().ref('rafts/' + raftId).on('value', snapshot => {
+            const val = snapshot.val();
+            if (val === null) { return; }
+            const startDateTimestamp = val.start_date;
+            const startDate = new Date(startDateTimestamp);
+            const today = new Date();
+            const diffInTime = today.getTime() - startDate.getTime(); 
+            const diffInDays = parseInt(diffInTime / (1000 * 3600 * 24));
+            this.setState({
+                card: {
+                    title: "経過日数",
+                    symbol: clock,
+                    data: diffInDays + "日",
+                    addition: {
+                        enable: false,
+                        color: "",
+                        text: ""
+                    }
+                },
+            });
+        });
     }
 
     render() {

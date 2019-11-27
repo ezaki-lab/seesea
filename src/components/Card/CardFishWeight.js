@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from '../../firebase.js'
 
 import Card from './Card'
 import fish from './icons/fish.png'
@@ -11,7 +12,7 @@ class CardFishWeight extends Card {
             card: {
                 title: "魚の重さ（推定）",
                 symbol: fish,
-                data: "530g",
+                data: "-",
                 addition: {
                     enable: false,
                     color: "#4E96E4",
@@ -19,6 +20,30 @@ class CardFishWeight extends Card {
                 }
             },
         }
+    }
+
+    componentDidMount() {
+        this.startFetchFishWeightFromFirebase();
+    }
+
+    startFetchFishWeightFromFirebase() {
+        const { raftId } = this.props;
+        firebase.database().ref('rafts/' + raftId + '/fish').on('value', snapshot => {
+            const val = snapshot.val();
+            if (val === null) { return; }
+            this.setState({
+                card: {
+                    title: "魚の重さ（推定）",
+                    symbol: fish,
+                    data: parseInt(val.weight) + "g",
+                    addition: {
+                        enable: false,
+                        color: "#4E96E4",
+                        text: "サイズを入力"
+                    }
+                }
+            });
+        });
     }
 
     render() {

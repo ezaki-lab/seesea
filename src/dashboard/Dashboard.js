@@ -108,10 +108,10 @@ class Dashboard extends Component {
             <PickDate onDayChange={this.handleDateChange} ></PickDate>
           </div>
           <div key="card-date">
-            <CardElapsedDays></CardElapsedDays>
+            <CardElapsedDays raftId={this.state.raftId}></CardElapsedDays>
           </div>
           <div key="card-fishsize">
-            <CardFishWeight></CardFishWeight>
+            <CardFishWeight raftId={this.state.raftId}></CardFishWeight>
           </div>
           <div key="card-water">
             <CardWaterTemperature></CardWaterTemperature>
