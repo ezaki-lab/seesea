@@ -68,8 +68,8 @@ class Display extends Component {
             if (val === null) { return; }
             this.setState({
                 fish: {
-                    weight: val.weight,
-                    number: val.number,
+                    weight: parseInt(val.weight),
+                    number: parseInt(val.number),
                 }
             });
         });
