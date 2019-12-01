@@ -89,13 +89,13 @@ class OneDayScheduleGraph extends Component {
     }
 
     getFeedSchedule(date) {
-        console.log("request get feed schedule from https://feed-api-ezaki-lab.herokuapp.com/feeds/today")
+        console.log("request get feed schedule from https://feed-api-ezaki-lab.herokuapp.com/feeds/today_updated")
         this.setState({
             requestStatus: RequestStateType.loading
         });
 
         const { raftId } = this.props;
-        var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/today"
+        var url = "https://feed-api-ezaki-lab.herokuapp.com/feeds/today_updated"
         // var url = "http://localhost:8080/feeds/oneday"
         var schedule = [];
         fetch(url, {
