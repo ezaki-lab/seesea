@@ -11,7 +11,7 @@ class CardWaterTemperature extends Card {
             card: {
                 title: "水温",
                 symbol: waterdrop,
-                data: "25℃",
+                data: "- ℃",
                 addition: {
                     enable: false,
                     color: "#F35C5C",

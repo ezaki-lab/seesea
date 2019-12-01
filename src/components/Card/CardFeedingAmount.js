@@ -18,7 +18,7 @@ class CardFeedingAmount extends Card {
 
         this.state = {
             card: {
-                title: "給餌量",
+                title: "基本給餌量",
                 symbol: feeds,
                 data: "-",
                 addition: {
