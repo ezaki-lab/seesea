@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from '../../firebase.js'
 
 import './Camera.css'
 import '../Base/Base.css'
@@ -14,6 +15,9 @@ class Camera extends Component {
                 height: 0,
                 width: 0
             },
+            ai: {
+                activity: false
+            },
             image_url: "http://uoccya.ise-hp.com/cages/lastimg/" + raftId,
             getRaftImageInterval: null
         }
@@ -21,6 +25,7 @@ class Camera extends Component {
 
     componentDidMount() {
         this.streamRaftImage();
+        this.startFetchActivityFromFirebase();
         this.getComponentSize();
     }
 
@@ -42,6 +47,19 @@ class Camera extends Component {
         }.bind(this), 5000);
     }
 
+    startFetchActivityFromFirebase() {
+        const { raftId } = this.props;
+        firebase.database().ref('rafts/' + raftId + '/ai').on('value', snapshot => {
+            const val = snapshot.val();
+            if (val === null) { return; }
+            this.setState({
+                ai: {
+                    activity: val.activity
+                }
+            });
+        });
+    }
+
     getComponentSize() {
         let height = document.getElementById('seesea-camera').clientHeight;
         let width = document.getElementById('seesea-camera').clientWidth;
@@ -57,9 +75,21 @@ class Camera extends Component {
         let height = this.state.size.height;
         let width = this.state.size.width;
         const { image_url } = this.state;
+        const activity = this.state.ai.activity;
+        var activityString = "";
+        var activityColor = "";
+        if (activity) {
+            activityString = "高活性";
+            activityColor = "#4E96E4";
+        } else {
+            activityString = "低活性";
+            activityColor = "#F35C5C";
+        }
+
         return (
             <div id="seesea-camera" className='base'>
                 <span className='base-title-large'>カメラ</span>
+                <p className="activity" style={{backgroundColor: activityColor}}>{activityString}</p>
                 <img
                     id="canvas"
                     src={image_url}
