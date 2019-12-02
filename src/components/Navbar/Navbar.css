@@ -7,11 +7,15 @@
     justify-content: space-between;
 }
 
-#seesea-navbar .logo {
+#seesea-navbar .logo-link {
     height: 60%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 20px;
+}
+
+#seesea-navbar .logo {
+    height: 100%;
 }
 
 #seesea-navbar .profile {

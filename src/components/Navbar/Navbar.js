@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import firebase from '../../firebase.js'
+import {
+    BrowserRouter,
+    Route,
+    Link
+} from 'react-router-dom'
 
 import './Navbar.css'
 import '../Base/Base.css'
@@ -79,7 +84,9 @@ class Navbar extends Component {
     render() {
         return (
             <div id='seesea-navbar'>
-                <img className='logo' src={logo} />
+                <Link className='logo-link' to={'/cages/showcase'} style={{ textDecoration: 'none' }}>
+                    <img className='logo' src={logo} />
+                </Link>
                 <button className='profile' onClick={this.showMenu}>
                     <div className='arrow'>
                         <div className='arrow-icon'></div>

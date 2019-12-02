@@ -31,6 +31,7 @@ class OneDayScheduleGraph extends Component {
     componentDidMount() {
         this.getComponentSize();
         this.getFeedSchedule(this.props.date);
+        this.streamFeedSchedule(this.props.date);
     }
 
     componentWillMount() {
@@ -61,6 +62,7 @@ class OneDayScheduleGraph extends Component {
         // For get tides of selected date
         if (this.state.requestStatus === RequestStateType.none) {
             this.getFeedSchedule(this.props.date);
+            this.streamFeedSchedule(this.props.date);
         }
         // For re-render component
         else if (this.state.requestStatus !== RequestStateType.loading) {
@@ -86,6 +88,12 @@ class OneDayScheduleGraph extends Component {
         let month = (current_datetime.getMonth() + 1);
         let day = current_datetime.getDate();
         return year + "-" + month + "-" + day + " 00:00:00"
+    }
+
+    streamFeedSchedule(date) {
+        this.state.getRaftImageInterval = setInterval(function () {
+            this.getFeedSchedule(date);
+        }.bind(this), 60000);
     }
 
     getFeedSchedule(date) {
